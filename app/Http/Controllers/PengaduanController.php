@@ -18,11 +18,21 @@ class PengaduanController extends Controller
     }
     public function lihat()
     {
-        $pengaduan = Pengaduan::all();
+        $pengaduan = Pengaduan::select()->where('nik', '123456')->get();
         //dd($pengaduan);
         return view('masyarakat/lihat_pengaduan', [
             "title" => "Lihat Pengaduan",
             "level" => "Masyakarat",
+            "pengaduan" => $pengaduan
+        ]);
+    }
+    public function lihatByAdmin()
+    {
+        $pengaduan = Pengaduan::all();
+        //dd($pengaduan);
+        return view('petugas/admin/lihat_pengaduan', [
+            "title" => "Lihat Pengaduan",
+            "level" => "Admin",
             "pengaduan" => $pengaduan
         ]);
     }
@@ -165,17 +175,38 @@ class PengaduanController extends Controller
             "pengaduan" => $pengaduan,
         ]);
     }
+    public function verifikasiPengaduanByAdmin()
+    {
+        $pengaduan = Pengaduan::select()->where('status', '0')->get();
+        return view('petugas/admin/verifikasi_pengaduan', [
+            "title" => "Verifikasi Pengaduan",
+            "level" => ['Admin'],
+            "pengaduan" => $pengaduan,
+        ]);
+    }
     public function verifikasi($id)
     {
         Pengaduan::where('id_pengaduan', $id)->update((['status' => 'proses']));
         session()->flash('success', 'Pengaduan berhasil di Verifkasi');
         return redirect(url('petugas/pengaduan/verifikasi'));
     }
+    public function verifikasiByAdmin($id)
+    {
+        Pengaduan::where('id_pengaduan', $id)->update((['status' => 'proses']));
+        session()->flash('success', 'Pengaduan berhasil di Verifkasi');
+        return redirect(url('admin/pengaduan/verifikasi'));
+    }
     public function tolak($id)
     {
         Pengaduan::where('id_pengaduan', $id)->update((['status' => 'ditolak']));
         session()->flash('success', 'Pengaduan berhasil di Ditolak');
         return redirect(url('petugas/pengaduan/verifikasi'));
+    }
+    public function tolakByAdmin($id)
+    {
+        Pengaduan::where('id_pengaduan', $id)->update((['status' => 'ditolak']));
+        session()->flash('success', 'Pengaduan berhasil di Ditolak');
+        return redirect(url('admin/pengaduan/verifikasi'));
     }
     public function detailbyPetugas($id)
     {
@@ -189,6 +220,22 @@ class PengaduanController extends Controller
             "title" => "Detail Pengaduan",
             "level" => "petugas",
             "bagian" => "Verifikasi",
+            "pengaduan" => $pengaduan,
+            "masyarakat" => $masyarakat
+        ]);
+    }
+    public function detailbyAdmin($id)
+    {
+        
+        //$pengaduan = DB::table('pengaduan')->where('id_pengaduan', $id)->first();
+        $pengaduan = Pengaduan::select()->where('id_pengaduan', $id)->get()->first();
+        //dd($pengaduan->nik);
+        // $masyarakat = DB::table('masyarakat')->where('nik', $pengaduan->nik)->first();
+        $masyarakat = Masyarakat::select()->where('nik', $pengaduan->nik)->get()->first();
+        return view('petugas/admin/detail_pengaduan', [
+            "title" => "Detail Pengaduan",
+            "level" => "Admin",
+            "bagian" => "kelola_pengaduan",
             "pengaduan" => $pengaduan,
             "masyarakat" => $masyarakat
         ]);

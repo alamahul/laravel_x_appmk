@@ -59,3 +59,19 @@ $(function () {
     })
 
 })  
+$(function () {
+    const hrefHapusLama = $('#id_hapus_masyarakat').prop('href');
+
+    $('.tombol_hapus_masyarakat').on('click', function () {
+        const id = $(this).data('id-hapus-masyarakat');
+        const hrefHapusBaru = hrefHapusLama + '/' + id;
+        $('#id_hapus_masyarakat').attr('href', hrefHapusBaru);
+        // console.log(hrefHapusLama);
+        // console.log(hrefHapusBaru);
+        // console.log(id);
+    });
+    $('#HapusMasyarakatModal').on('hidden.bs.modal', function () {
+        $('#id_hapus_masyarakat').attr('href', hrefHapusLama);    
+    })
+
+})  

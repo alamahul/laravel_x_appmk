@@ -57,7 +57,7 @@
     </a>
     @endif
     @if ($pengaduan->status == 'proses')
-    <a href="{{ url('/petugas/tanggapan/tulis')}}" class="btn btn-success mb-3">
+    <a href="{{ url('/petugas/tanggapan/tulis/'.$pengaduan->id_pengaduan)}}" class="btn btn-success mb-3">
       <i class="fas fa-reply"></i> Tanggapi Pengaduan
     </a>
     @endif

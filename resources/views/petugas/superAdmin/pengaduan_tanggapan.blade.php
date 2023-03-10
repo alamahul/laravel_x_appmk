@@ -1,5 +1,6 @@
 @extends('layouts.superAdmin')
 @section('container')
+
 <div style="" class="card shadow">
 
   <div class="card-header py-3">

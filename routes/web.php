@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -121,48 +122,39 @@ Route::get('/admin/home', function () {
 Route::get('/admin/profile', function () {
     return view('petugas/admin/profile');
 });
-Route::get('/admin/pengaduan/lihat', function () {
-    return view('petugas/admin/lihat_pengaduan');
-});
-Route::get('/admin/pengaduan/detail', function () {
-    return view('petugas/admin/detail_pengaduan');
-});
-Route::get('/admin/pengaduan/verifikasi', function () {
-    return view('petugas/admin/verifikasi_pengaduan');
-});
-Route::get('/admin/pengaduan/tanggapi', function () {
-    return view('petugas/admin/tanggapi_pengaduan');
-});
-Route::get('/admin/tanggapan/tulis', function () {
-    return view('petugas/admin/tulis_tanggapan');
-});
-Route::get('/admin/tanggapan/lihat', function () {
-    return view('petugas/admin/lihat_tanggapan');
-});
-Route::get('/admin/tanggapan/edit', function () {
-    return view('petugas/admin/edit_tanggapan');
-});
-Route::get('/admin/tanggapan/detail', function () {
-    return view('petugas/admin/detail_tanggapan');
-});
-Route::get('/admin/tanggapan/kelola', function () {
-    return view('petugas/admin/kelola_tanggapan');
-});
-Route::get('/admin/masyarakat/lihat', function () {
-    return view('petugas/admin/lihat_masyarakat');
-});
-Route::get('/admin/masyarakat/lihat', function () {
-    return view('petugas/admin/lihat_masyarakat');
-});
-Route::get('/admin/laporan/laporan_pengaduan', function () {
-    return view('petugas/admin/laporan_pengaduan');
-});
-Route::get('/admin/laporan/laporan_masyarakat', function () {
-    return view('petugas/admin/laporan_masyarakat');
-});
-Route::get('/admin/laporan/laporan_tanggapan', function () {
-    return view('petugas/admin/laporan_tanggapan');
-});
+Route::get('/admin/pengaduan/lihat', [PengaduanController::class, 'lihatByAdmin']);
+Route::get('/admin/pengaduan/detail/{id}', [PengaduanController::class, 'detailbyAdmin']);
+
+
+Route::get('/admin/pengaduan/verifikasi', [PengaduanController::class, 'verifikasiPengaduanByAdmin']);
+
+Route::get('/admin/verifikasi/{id}', [PengaduanController::class, 'verifikasiByAdmin']);
+Route::get('/admin/tolak/{id}', [PengaduanController::class, 'tolakByAdmin']);
+
+Route::get('/admin/pengaduan/tanggapi', [TanggapanController::class, 'tanggapiPengaduanByAdmin']);
+
+Route::get('/admin/tanggapan/tulis/{id}', [TanggapanController::class, 'tulis_tanggapanByAdmin']);
+Route::post('/admin/tanggapan/tulis', [TanggapanController::class, 'proses_tulis_tanggapanByAdmin']);
+
+Route::get('/admin/tanggapan/kelola', [TanggapanController::class, 'kelola_tanggapanByAdmin']);
+
+Route::get('/admin/tanggapan/edit/{id}', [TanggapanController::class, 'editByAdmin']);
+Route::post('/admin/tanggapan/edit', [TanggapanController::class, 'proses_editByAdmin']);
+
+Route::get('/admin/tanggapan/detail/{id}', [TanggapanController::class, 'detailByAdmin']);
+
+Route::get('/admin/tanggapan/hapus/{id}', [TanggapanController::class, 'hapusByAdmin']);
+
+Route::get('/admin/masyarakat/hapus/{id}', [MasyarakatController::class, 'hapus']);
+
+Route::get('/admin/masyarakat/lihat', [MasyarakatController::class, 'lihatByAdmin']);
+
+
+Route::get('/admin/laporan/laporan_pengaduan', [LaporanController::class, 'pengaduan']);
+Route::get('/admin/laporan/laporan_masyarakat', [LaporanController::class, 'masyarakat']);
+Route::get('/admin/laporan/laporan_tanggapan', [LaporanController::class, 'tanggapan']);
+
+
 Route::get('/admin/logout', function () {
     
 });
@@ -180,12 +172,9 @@ Route::get('/superAdmin/home', function () {
 Route::get('/superAdmin/profile', function () {
     return view('petugas/superAdmin/profile');
 });
-Route::get('/superAdmin/tanggapan/lihat', function () {
-    return view('petugas/superAdmin/lihat_tanggapan');
-});
-Route::get('/superAdmin/tanggapan/detail', function () {
-    return view('petugas/superAdmin/detail_tanggapan');
-});
+Route::get('/superAdmin/tanggapan/lihat', [TanggapanController::class, 'lihat_tanggapanBySuperAdmin']);
+
+Route::get('/superAdmin/tanggapan/detail/{id}', [TanggapanController::class, 'detailBySuperAdmin']);
 Route::get('/superAdmin/tanggapan/pengaduan', function () {
     return view('petugas/superAdmin/pengaduan_tanggapan');
 });

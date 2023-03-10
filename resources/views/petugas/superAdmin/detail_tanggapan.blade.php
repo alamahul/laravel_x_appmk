@@ -15,7 +15,7 @@
   <a href="{{ url('/superAdmin/tanggapan/lihat')}}" class="btn btn-secondary mb-3">
       <i class="fas fa-arrow-left"></i> Kembali ke Lihat Tanggapan
     </a>
-    <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#HapusTanggapanModal">
+    <a class="btn btn-danger mb-3 tombol_hapus_tanggapan" href="#" data-id-hapus-tanggapan="{{ $tanggapan->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
       <i class="fas fa-trash"></i> Hapus Tanggapan
     </a>
     <div class="table-responsive text-center">
@@ -23,15 +23,13 @@
         <thead class="thead-light">
           <tr>
             <th>Tanggal Tanggapan</th>
-            <th>Pengirim Pengaduan</th>
             <th>Judul Pengaduan</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> 20 Januari 2020 </td>
-            <td> masyarakat </td>
-            <td> lorem ipsum </td>
+            <td> {{ substr($tanggapan->tgl_tanggapan, 0, 10) }} </td>
+            <td> {{ $tanggapan->pengaduan->judul_laporan }} </td>
           </tr>
           <?php ?>
         </tbody>
@@ -44,7 +42,7 @@
         </thead>
         <tbody>
           <tr><td><p>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores aperiam repellat qui esse omnis accusantium fugiat assumenda beatae earum porro.
+           {{ $tanggapan->tanggapan }}
           </p>
           </td></tr>
         </tbody>
@@ -60,15 +58,15 @@
         <tbody>
           <tr>
             <td colspan="1"> Nama Petugas </td>
-            <td colspan="2"> Alam </td>
+            <td colspan="2"> {{ $tanggapan->petugas->nama_petugas }} </td>
           </tr>
           <tr>
             <td colspan="1">  Nomor Telepon </td>
-            <td colspan="2"> 0899 </td>
+            <td colspan="2"> {{$tanggapan->petugas->telp }} </td>
           </tr>
           <tr>
             <td colspan="1"> Level</td>
-            <td colspan="2"> petugas </td>
+            <td colspan="2"> {{$tanggapan->petugas->level}} </td>
           </tr>
           <?php ?>
         </tbody>
@@ -76,7 +74,6 @@
     </div>
     </div>
 </div>
-@endsection
 
 <div class="modal fade" id="HapusTanggapanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -92,31 +89,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/superAdmin/tanggapan/hapus')}}" class="btn btn-danger">
-        Ya
-    </a>
+        <a id="id_hapus_tanggapan" href="{{ url('/superAdmin/tanggapan/hapus')}}" class="btn btn-danger">
+          Ya
+        </a>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="TolakPengaduanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Apakah Anda Yakin Ingin <strong> Menolak </strong> Pengaduan Ini?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/petugas/tolak_pengaduan')}}" class="btn btn-danger">
-        Ya
-    </a>
-      </div>
-    </div>
-  </div>
-</div>
+@endsection
