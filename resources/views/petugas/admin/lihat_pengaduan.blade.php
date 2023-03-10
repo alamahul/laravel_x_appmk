@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('container')
-
+@php
+    $i = 1;
+   // dd($pengaduan);
+@endphp
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Lihat Pengaduan</h1>
@@ -18,6 +21,7 @@
                     <tr class="text-center bg-gradient-light text-dark">
                       <th>NO</th>
                       <th>Tanggal Pengaduan</th>
+                      <th>NIK</th>
                       <th>Judul Laporan</th>
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
@@ -29,6 +33,7 @@
                     <tr class="text-center bg-gradient-light text-dark">
                     <th>NO</th>
                       <th>Tanggal Pengaduan</th>
+                      <th>NIK</th>
                       <th>Judul Laporan</th>
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
@@ -37,57 +42,76 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr class="bg-gradient-white text-dark">
-                      <td>1</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>123</td>
-                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                    @foreach ($pengaduan as $row)
+                    @if ($i % 2 == 0)
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $row->tgl_pengaduan }}</td>
+                      <td>{{ $row->nik }}</td>
+                      <td>{{ $row->judul_laporan }}</td>
+                      <td>{{ $row->alamat_pengaduan }}</td>
+                      <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
+                      <td>{{ $row->status }}</td>
+                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('admin/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Tanggapan">
-                            <span class="fas fa-smile text-success"></span>
-                        </a>
+                          @if ($row->status == 'selesai')
+                          <a href="{{ url('admin/tanggapan/detail/'.$row->tanggapan->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Tanggapan">
+                              <span class="fas fa-smile text-success"></span>
+                          </a>
+                          @else
+                          <a title="Pengaduan Belum Ditanggapi">
+                              <span class="fas fa-smile text-dark"></span>
+                          </a>
+                          @endif
                         </td>
                         <td>
-                        <a href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a class="tombolHapus" data-id-ubah="{{ $row->id_pengaduan }}" href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusPengaduanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
-                    </tr>
-                    <tr class="bg-light text-dark">
-                    <td>2</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>123</td>
-                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                    </tr>    
+                    @else
+                    <tr class="bg-light text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $row->tgl_pengaduan }}</td>
+                      <td>{{ $row->nik }}</td>
+                      <td>{{ $row->judul_laporan }}</td>
+                      <td>{{ $row->alamat_pengaduan }}</td>
+                      <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
+                      <td>{{ $row->status }}</td>
+                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('admin/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Tanggapan">
-                            <span class="fas fa-smile text-success"></span>
-                        </a>
+                          @if ($row->status == 'selesai')
+                          <a href="{{ url('admin/tanggapan/detail/'.$row->tanggapan->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Tanggapan">
+                              <span class="fas fa-smile text-success"></span>
+                          </a>
+                          @else
+                          <a title="Pengaduan Belum Ditanggapi">
+                              <span class="fas fa-smile text-dark"></span>
+                          </a>
+                          @endif
                         </td>
                         <td>
-                        <a href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a class="tombolHapus" data-id-ubah="{{ $row->id_pengaduan }}" href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusPengaduanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
                     </tr>
+                    @endif
+                    @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
 
-<div class="modal fade" id="VerifikasiPengaduanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="HapusPengaduanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -97,37 +121,17 @@
         </button>
       </div>
       <div class="modal-body">
-        Apakah Anda Yakin Ingin <strong> Mengverifikasi </strong> Pengaduan Ini?
+        Apakah Anda Yakin Ingin <strong> Menghapus </strong> Pengaduan Ini?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/petugas/verifikasi_pengaduan')}}" class="btn btn-success">
+        <a id="id_hapus" href="{{ url('/admin/pengaduan/hapus')}}" class="btn btn-danger">
         Ya
     </a>
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="TolakPengaduanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Apakah Anda Yakin Ingin <strong> Menolak </strong> Pengaduan Ini?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/petugas/tolak_pengaduan')}}" class="btn btn-danger">
-        Ya
-    </a>
-      </div>
-    </div>
-  </div>
-</div>
+
 
         @endsection

@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 @section('container')
 <div class="container-fluid" style="height:90%">
@@ -8,14 +9,18 @@
     </div>
 </div>
 
-  <form class="user" method="post" enctype="multipart/form-data" action="TulisPengaduan/tulis">
+  <form class="user" method="post" enctype="multipart/form-data" action="{{ url('admin/tanggapan/edit') }}">
+    @csrf
+    <input type="hidden" name="id_tanggapan" value="{{ $tanggapan->id_tanggapan }}">
+    <input type="hidden" name="id_pengaduan" value="{{ $tanggapan->id_pengaduan }}">
+    <input type="hidden" name="id_petugas" value="{{ $tanggapan->id_petugas }}">
     <div class="form-group">
       <h5>Tanggapan</h5>
-      <textarea class="form-control" name="tanggapan" id="" cols="30" rows="10"></textarea>
+      <textarea class="form-control" name="tanggapan" id="" cols="30" rows="10"> {{ $tanggapan->tanggapan }} </textarea>
     </div>
     <div class="form-group">
-      <label for="tgl_pengaduan">Tanggal Pengaduan</label>
-      <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="<?= date('Y-m-d'); ?>">
+      <label for="tgl_pengaduan">Tanggal Tanggapan</label>
+      <input type="text" class="form-control" name="tgl_tanggapan" id="tanggal" readonly value="{{ substr($tanggapan->tgl_tanggapan, 0, 10); }}">
     </div>
     <div class="form-group">
     </div>
@@ -24,10 +29,10 @@
       Edit Tanggapan
     </button>
 
-    <a href="{{url('petugas/tanggapan/kelola')}}" class="btn btn-secondary">
+    <a href="{{url('admin/tanggapan/kelola')}}" class="btn btn-secondary">
       <i class="fas fa-chevron-circle-left"></i> Kembali ke Kelola Tanggapan
     </a>
-    <a href="{{url('petugas/tanggapan/detail')}}" class="btn btn-dark">
+    <a href="{{url('admin/tanggapan/detail')}}" class="btn btn-dark">
       <i class="fas fa-angle-double-left"></i> Kembali ke Detail Tanggapan
     </a>
     <?php // var_dump($_POST); var_dump($_FILES); ?>

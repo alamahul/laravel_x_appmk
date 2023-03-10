@@ -1,6 +1,9 @@
 @extends('layouts.superAdmin')
 @section('container')
 
+@php
+    $i = 1;
+@endphp
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Lihat Tanggapan</h1>
@@ -35,48 +38,53 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr class="bg-gradient-white text-dark">
-                      <td>1</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td class="no-print"><a href="{{ url('superAdmin/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
+                    @foreach ($tanggapan as $row)
+                    @if ($i % 2 == 0)
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ substr($row->tgl_tanggapan, 0, 10) }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                      <td>{{ $row->pengaduan->judul_laporan }}</td>
+                      <td>{{ $row->petugas->nama_petugas }}</td>
+                      <td class="no-print"><a href="{{ url('superAdmin/tanggapan/detail/'.$row->id_tanggapan ) }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('superAdmin/tanggapan/pengaduan') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                        <a href="{{ url('superAdmin/tanggapan/pengaduan'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
                             <span class="fas fa-eye text-success"></span>
                         </a>
                         </td>
                         <td>
-                        <a href="{{ url('superAdmin/tanggapan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
                     </tr>
-                    <tr class="bg-light text-dark">
-                    <td>2</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td class="no-print"><a href="{{ url('superAdmin/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
-                            <span class="fas fa-info text-info"></span>
-                        </a>
+                    @else
+                    <tr class="bg-light text-dark text-center">
+                    <td>{{ $i++ }}</td>
+                    <td>{{ substr($row->tgl_tanggapan, 0, 10) }}</td>
+                    <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                    <td>{{ $row->pengaduan->judul_laporan }}</td>
+                    <td>{{ $row->petugas->nama_petugas }}</td>
+                    <td class="no-print"><a href="{{ url('superAdmin/tanggapan/detail/'.$row->id_tanggapan ) }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
+                          <span class="fas fa-info text-info"></span>
+                      </a>
+                    </td>
+                      <td class="no-print">
+                      <a href="{{ url('superAdmin/tanggapan/pengaduan'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                          <span class="fas fa-eye text-success"></span>
+                      </a>
                       </td>
-                        <td class="no-print">
-                        <a href="{{ url('superAdmin/tanggapan/pengaduan') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
-                            <span class="fas fa-eye text-success"></span>
-                        </a>
-                        </td>
-                        <td>
-                        <a href="{{ url('superAdmin/tanggapan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
-                            <span class="fas fa-trash text-danger"></span>
-                        </a>
-                        </td>
+                      <td>
+                      <a href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
+                          <span class="fas fa-trash text-danger"></span>
+                      </a>
+                      </td>
                     </tr>
+                    @endif    
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -97,7 +105,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/superAdmin/tanggapan/hapus')}}" class="btn btn-danger">
+        <a id="id_hapus_tanggapan" href="{{ url('/superAdmin/tanggapan/hapus')}}" class="btn btn-danger">
         Ya
     </a>
       </div>
