@@ -2,6 +2,11 @@
 @section('container')
 
 
+@php
+    $i = 1;
+    //dd($pengaduan);
+@endphp
+
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Tanggapi Pengaduan</h1>
 
@@ -11,12 +16,23 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Pengaduan</h6>
             </div>
             <div class="card-body">
+              @if (session()->has('success'))
+              <div class="col-sm-12">
+                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr class="text-center bg-gradient-light text-dark">
                       <th>NO</th>
                       <th>Tanggal Pengaduan</th>
+                      <th>NIK</th>
                       <th>Judul Laporan</th>
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
@@ -28,6 +44,7 @@
                     <tr class="text-center bg-gradient-light text-dark">
                     <th>NO</th>
                       <th>Tanggal Pengaduan</th>
+                      <th>NIK</th>
                       <th>Judul Laporan</th>
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
@@ -36,38 +53,49 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr class="bg-gradient-white text-dark">
-                      <td>1</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>123</td>
-                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
-                            <span class="fas fa-info text-info"></span>
-                        </a>
-                      </td>
-                      <td class="no-print"><a href="{{ url('petugas/tanggapan/tulis') }}" data-toggle="tooltip" data-placement="top" title="Tanggapi Pengaduan">
-                            <span class="fas fa-reply text-success"></span>
-                        </a>
-                      </td> 
-                    </tr>
-                    <tr class="bg-light text-dark">
-                    <td>2</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td>123</td>
-                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
-                            <span class="fas fa-info text-info"></span>
-                        </a>
-                      </td>
-                      <td class="no-print"><a href="{{ url('petugas/tanggapan/tulis') }}" data-toggle="tooltip" data-placement="top" title="Tanggapi Pengaduan">
-                            <span class="fas fa-reply text-success"></span>
-                        </a>
-                      </td> 
-                    </tr>
+                    @foreach($pengaduan as $row)
+                    @php
+                        $tgl = $row->tgl_pengaduan;
+                        $tgl = substr($tgl, 0, 10);                        
+                    @endphp
+                    @if ($i % 2 == 0)
+                    <tr class="bg-light text-dark text-center">
+                      <td>{{ $i++  }}</td>
+                      <td> {{ $tgl  }}</td>
+                      <td> {{ $row->nik }} </td>
+                      <td>{{ $row->judul_laporan  }}</td>
+                      <td>{{ $row->alamat_pengaduan }}</td>
+                      <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
+                      <td>{{ $row->status  }}</td>
+                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                        <span class="fas fa-info text-info"></span>
+                    </a>
+                  </td>
+                  <td class="no-print"><a href="{{ url('petugas/tanggapan/tulis/'.$row->id_pengaduan) }}" data-toggle="tooltip" data-placement="top" title="Tanggapi Pengaduan">
+                        <span class="fas fa-reply text-success"></span>
+                    </a>
+                  </td> 
+                </tr>
+                @else 
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>{{ $i++  }}</td>
+                      <td> {{ $tgl  }}</td>
+                      <td> {{ $row->nik }} </td>
+                      <td>{{ $row->judul_laporan  }}</td>
+                      <td>{{ $row->alamat_pengaduan }}</td>
+                      <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
+                      <td>{{ $row->status  }}</td>
+                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                        <span class="fas fa-info text-info"></span>
+                    </a>
+                  </td>
+                  <td class="no-print"><a href="{{ url('petugas/tanggapan/tulis/'.$row->id_pengaduan) }}" data-toggle="tooltip" data-placement="top" title="Tanggapi Pengaduan">
+                        <span class="fas fa-reply text-success"></span>
+                    </a>
+                  </td> 
+                </tr>
+                       @endif
+                    @endforeach
                   </tbody>
                 </table>
               </div>

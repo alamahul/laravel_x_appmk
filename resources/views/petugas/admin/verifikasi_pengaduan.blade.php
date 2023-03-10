@@ -14,7 +14,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr class="text-center bg-gradient-light text-dark">
+                    <tr style="background-color: aqua" class="text-center-info text-dark">
                       <th>NO</th>
                       <th>Tanggal Pengaduan</th>
                       <th>Judul Laporan</th>
@@ -25,7 +25,7 @@
                     </tr>
                   </thead>
                   <tfoot>
-                    <tr class="text-center bg-gradient-light text-dark">
+                    <tr style="background-color: gold" class="text-center text-dark">
                     <th>NO</th>
                       <th>Tanggal Pengaduan</th>
                       <th>Judul Laporan</th>
@@ -44,7 +44,7 @@
                       <td>$320,800</td>
                       <td>123</td>
                       <td class="no-print"><a href="{{ url('admin/pengaduan/detail') }}">
-                            <span class="fas fa-info text-info"></span>
+                        <i class="far fa-question-circle"></i>
                         </a>
                       </td>
                       <td class="no-print"><a href="{{ url('admin/verifikasi_pengaduan') }}"    data-toggle="modal" data-target="#VerifikasiPengaduanModal">
@@ -78,6 +78,28 @@
                             <span class="fas fa-times text-danger"></span>
                         </a>
                         </td>
+                    </tr>
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>1</td>
+                      <td>System Architect</td>
+                      <td>Edinburgh</td>
+                      <td>2011/04/25</td>
+                      <td>$320,800</td>
+                      <td>123</td>
+                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail') }}">
+                            <span class="fas fa-info text-info"></span>
+                        </a>
+                      </td>
+                      <td class="no-print"><a href="{{ url('admin/verifikasi_pengaduan') }}"    data-toggle="modal" data-target="#VerifikasiPengaduanModal">
+                            <span class="fas fa-check text-success"></span>
+                        </a>
+                      </td>
+                        <td class="no-print">
+                        <a href="{{ url('admin/tolak_pengaduan') }}"  data-toggle="modal" data-target="#TolakPengaduanModal">
+                            <span class="fas fa-times text-danger"></span>
+                        </a>
+                        </td>     
+                      </td>
                     </tr>
                   </tbody>
                 </table>

@@ -16,13 +16,34 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Silahkan Register</h1>
               </div>
-              <form class="user" method="post" action="PetugasRegister/prosesRegister"><div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
+              <form class="user" method="post" action="{{url('petugas/proses_register')}}"><div class="form-group row">
+                @csrf  
+                <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" placeholder="Masukan Nama Lengkap Anda..." name="nama_petugas" required>
                   </div>
                   <div class="col-sm-6">
                     <input type="password" class="form-control form-control-user" placeholder="Buat Password Anda..." name="password" required>
                   </div>
+                  @error('nama_petugas')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-1" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
+                  @error('password')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-n2" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -31,6 +52,26 @@
                   <div class="col-sm-6">
                     <input type="number" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Masukan Nomber HP Anda..." name="telp" required>
                   </div>
+                  @error('username_petugas')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-3" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
+                  @error('telp')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-3" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                  <i class="fas fa-sign-in-alt float-left"></i> Register

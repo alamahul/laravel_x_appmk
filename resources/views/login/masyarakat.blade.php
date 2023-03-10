@@ -15,7 +15,17 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Silahkan Login untuk Mengakses Aplikasi</h1>
               </div>
-              <form class="user" method="post" action="login/proseslogin">
+              @if (session()->has('success'))
+              <div class="col-sm-12">
+                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
+              <form class="user" method="post" action="{{  url('/masyarakat/proses_login')}}">
                 <div class="form-group">
                   <input type="number" name="nik" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan NIK Anda..." required>
                 </div>
@@ -26,10 +36,10 @@
                  <i class="fas fa-sign-in-alt float-left"></i> Login
                 </button>
                 <hr>
-                <a href="register" class="btn btn-google btn-user btn-block">
+                <a href="{{ url('/masyarakat/register')}}" class="btn btn-google btn-user btn-block">
                   <i class="fas fa-registered fa-1x float-left"></i> Belum punya Akun Silahkan Register
                 </a>
-                <a href="../petugas/login" class="btn btn-facebook btn-user btn-block">
+                <a href="{{ url('/petugas/login')}}" class="btn btn-facebook btn-user btn-block">
                   <i class="fas fa-user-secret float-left"></i> Login Sebagai Petugas
                 </a>
               </form>

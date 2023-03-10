@@ -1,6 +1,10 @@
 @extends('layouts.petugas')
 @section('container')
 
+@php
+   // dd($masyarakat);
+    $i = 1
+@endphp
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Lihat Masyarakat</h1>
@@ -21,7 +25,6 @@
                       <th>Username</th>
                       <th>Telp</th>
                       <th>Foto Profile</th>
-                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -32,32 +35,33 @@
                       <th>Username</th>
                       <th>Telp</th>
                       <th>Foto Profile</th>
-                      <th>Aksi</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr class="bg-gradient-white text-dark">
-                      <td>1</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td></td>
-                      <td></td>
+                    @foreach ($masyarakat as $row)
+                    @if ($i % 2 == 0)
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $row->nama }}</td>
+                      <td>{{ $row->alamat }}</td>
+                      <td>{{ $row->username }}</td>
+                      <td>{{ $row->telp }}</td>
+                      <td>{{ $row->foto_profile }}</td>
                     </tr>
-                    <tr class="bg-light text-dark">
-                    <td>2</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td></td>
-                      <td>
-                        <a href="#" data-toggle="modal" data-target="#HapusMasyarakatModal">
-                          <span class="fas fa-trash"></span>
-                        </a>
-                      </td>
-                    </tr>
+                    @else
+                    <tr class="bg-light text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $row->nama }}</td>
+                      <td>{{ $row->alamat }}</td>
+                      <td>{{ $row->username }}</td>
+                      <td>{{ $row->telp }}</td>
+                      <td>{{ $row->foto_profile }}</td>
+                      </tr>
+
+                    @endif
+                    @endforeach
+                    
+                    
                   </tbody>
                 </table>
               </div>

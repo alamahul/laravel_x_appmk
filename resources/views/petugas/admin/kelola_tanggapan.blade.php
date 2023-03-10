@@ -46,7 +46,7 @@
                       </td>
                         <td class="no-print">
                         <a href="{{ url('petugas/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
-                            <span class="fas fa-smile text-success"></span>
+                            <span style="" class="fas fa-smile text-success"></span>
                         </a>
                         </td>
                         <td class="no-print">
