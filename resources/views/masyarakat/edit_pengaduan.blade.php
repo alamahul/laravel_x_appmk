@@ -1,6 +1,11 @@
 
 @extends('layouts.main')
 @section('container')
+
+@php
+  $tgl = $pengaduan->tgl_pengaduan;
+  $tgl = substr($tgl, 0, 10);
+@endphp
 <div class="container-fluid" style="height:90%">
 
 <div class="row">
@@ -9,26 +14,30 @@
     </div>
 </div>
 
-  <form class="user" method="post" enctype="multipart/form-data" action="TulisPengaduan/tulis">
+  <form class="user" method="post" enctype="multipart/form-data" action="{{ url('masyarakat/pengaduan/edit')}}">
+    @csrf
   <div class="form-group">
+    <input type="hidden" name="nik" value="{{ $pengaduan->nik }}">
+    <input type="hidden" name="id_pengaduan" value="{{ $pengaduan->id_pengaduan }}">
       <h5>Judul Laporan</h5>
-      <input class="form-control" type="text" name="judul_laporan" id="judul_laporan" required value="lorem ipsum">
+      <input class="form-control" type="text" name="judul_laporan" id="judul_laporan" required value="{{ $pengaduan->judul_laporan }}">
     </div>
     <div class="form-group">
       <h5>Isi Laporan</h5>
-      <input class="form-control" id="x" type="hidden" name="isi_laporan" id="isi_laporan" cols="300" rows="10" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt possimus illo aperiam quaerat. Doloribus, officia expedita. Non ullam adipisci corrupti, commodi sapiente saepe eaque illum impedit nam ex perferendis vitae!">
+      <input class="form-control" id="x" type="hidden" name="isi_laporan" id="isi_laporan" cols="300" rows="10" value="{{ $pengaduan->isi_laporan }}">
       <trix-editor input="x"></trix-editor>
     </div>
     <div class="form-group">
     <h5>Alamat Pengaduan</h5>
-        <input class="form-control" type="text" name="alamat_pengaduan" id="alamat_pengaduan" required value="cikarag">
+        <input class="form-control" type="text" name="alamat_pengaduan" id="alamat_pengaduan" required value="{{ $pengaduan->alamat_pengaduan }}">
     </div>
     <div class="text-center">
      <label for="img">Foto</label>
     </div>
     <div class="form-group text-center">
 
-      <img style="width:300px; height:300px;" src="{{asset('img/logoGarut.png')}}" class="img-thumbnail rounded" alt="preview" id="target" name="img">
+      <input type="hidden" name="gambarLama" value="{{ $pengaduan->foto }}">
+      <img style="width:300px; height:300px;" src="{{asset('img/pengaduan/nik='.$pengaduan->nik.'/'.$pengaduan->foto)}}" class="img-thumbnail rounded" alt="preview" id="target" name="img">
     </div>
     <div style="font-size:3rem;" class="text-center">
 
@@ -37,13 +46,13 @@
     <div class="form-group text-center">
 
 
-      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto" id="src" value="logoGarut.png">
+      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto" id="src" value="">
 
 
     </div>
     <div class="form-group text-center">
       <label for="tgl_pengaduan">Tanggal Pengaduan</label>
-      <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="<?= date('Y-m-d'); ?>">
+      <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="{{ $tgl }}">
     </div>
     <div class="form-group">
     </div>

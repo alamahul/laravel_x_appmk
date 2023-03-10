@@ -12,26 +12,34 @@
   </div>
   
   <div class="card-body">
-  <a href="{{ url('/petugas/pengaduan/verifikasi')}}" class="btn btn-secondary mb-3">
-      <i class="fas fa-arrow-left"></i> Kembali ke Verifikasi Pengaduan
+  <a href="{{ url('/petugas/tanggapan/kelola')}}" class="btn btn-primary mb-3">
+      <i class="fas fa-arrow-left"></i> Kembali ke kelola Tanggapan
     </a>
-    <a href="{{ url('/petugas/pengaduan/detail')}}" class="btn btn-dark mb-3">
-      <i class="fas fa-angle-double-left"></i> Kembali ke Detail Pengaduan
+    <a href="{{ url('/petugas/pengaduan/detail/'.$tanggapan->pengaduan->id_pengaduan )}}" class="btn btn-dark mb-3">
+      <i class="fas fa-info mr-2"></i> Detail Pengaduan
     </a>
+
+    @if ($tanggapan->pengaduan->status == 'selesai')
+    <a href="{{ url('/petugas/tanggapan/hapus')}}" class="btn btn-danger mb-3 tombol_hapus_tanggapan" data-id-hapus-tanggapan="{{ $tanggapan->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
+      <i class="fas fa-trash"></i> Hapus Tanggapan
+    </a>
+    <a class="btn btn-warning mb-3" href="{{ url('petugas/tanggapan/edit/'.$tanggapan->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Edit Tanggapan">
+      <i class="fas fa-edit mr-2"></i>Edit Tanggapan
+   </a>
+    @endif
+
     <div class="table-responsive text-center">
       <table class="table table-bordered mt-0" id="dataTable" width="100%" cellspacing="0">
         <thead class="thead-light">
           <tr>
             <th>Tanggal Tanggapan</th>
-            <th>Pengirim Pengaduan</th>
-            <th>Judul Pengaduan</th>
+            <th>Judul Laporan</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td> 20 Januari 2020 </td>
-            <td> masyarakat </td>
-            <td> lorem ipsum </td>
+            <td> {{ substr($tanggapan->tgl_tanggapan, 0, 10) }} </td>
+            <td> {{ $tanggapan->pengaduan->judul_laporan }} </td>
           </tr>
           <?php ?>
         </tbody>
@@ -44,7 +52,7 @@
         </thead>
         <tbody>
           <tr><td><p>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores aperiam repellat qui esse omnis accusantium fugiat assumenda beatae earum porro.
+           {{ $tanggapan->tanggapan }}
           </p>
           </td></tr>
         </tbody>
@@ -60,20 +68,41 @@
         <tbody>
           <tr>
             <td colspan="1"> Nama Petugas </td>
-            <td colspan="2"> Alam </td>
+            <td colspan="2"> {{ $tanggapan->petugas->nama_petugas }} </td>
           </tr>
           <tr>
             <td colspan="1">  Nomor Telepon </td>
-            <td colspan="2"> 0899 </td>
+            <td colspan="2"> {{ $tanggapan->petugas->telp }} </td>
           </tr>
           <tr>
             <td colspan="1"> Level</td>
-            <td colspan="2"> petugas </td>
+            <td colspan="2"> {{ $tanggapan->petugas->level }} </td>
           </tr>
           <?php ?>
         </tbody>
       </table>
     </div>
     </div>
+</div>
+<div class="modal fade" id="HapusTanggapanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda Yakin Ingin <strong> Menghapus </strong> Tanggapan Ini?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+        <a id="id_hapus_tanggapan" href="{{ url('/petugas/tanggapan/hapus')}}" class="btn btn-danger">
+        Ya
+    </a>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

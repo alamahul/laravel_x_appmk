@@ -2,6 +2,9 @@
 
 @section('container')
 
+@php
+@endphp
+
 <main>
         
 

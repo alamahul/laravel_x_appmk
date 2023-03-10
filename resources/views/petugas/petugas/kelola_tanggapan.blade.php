@@ -1,7 +1,9 @@
 @extends('layouts.petugas')
 @section('container')
-
-
+@php
+//dd($tanggapan);
+$i = 1;
+@endphp
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Kelola Tanggapan</h1>
 
@@ -11,6 +13,16 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Tanggapan</h6>
             </div>
             <div class="card-body">
+              @if (session()->has('success'))
+              <div class="col-sm-12">
+                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -34,58 +46,68 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr class="bg-gradient-white text-dark">
-                      <td>1</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                    @foreach ($tanggapan as $row)
+                    @php
+                    $tgl = $row->tgl_tanggapan;
+                    $tgl = substr($tgl, 0, 10);                        
+                    @endphp
+                      @if ($i % 2 == 0)
+                    <tr class="bg-gradient-white text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $tgl }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                      <td>{{ $row->pengaduan->judul_laporan }}</td>
+                      <td>{{ $row->petugas->nama_petugas }}</td>
+                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->pengaduan->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('petugas/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
+                        <a href="{{ url('petugas/tanggapan/detail/'.$row->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
                             <span class="fas fa-smile text-success"></span>
                         </a>
                         </td>
                         <td class="no-print">
-                        <a href="{{ url('petugas/tanggapan/edit') }}"  data-toggle="tooltip" data-placement="top" title="Edit Tanggapan">
+                        <a href="{{ url('petugas/tanggapan/edit/'.$row->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Edit Tanggapan">
                             <span class="fas fa-edit text-warning"></span>
                         </a>
                         </td>
                         <td>
-                        <a href="{{ url('petugas/tanggapan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a href="{{ url('petugas/tanggapan/hapus') }}" class="tombol_hapus_tanggapan" data-id-hapus-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
                     </tr>
-                    <tr class="bg-light text-dark">
-                    <td>2</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                    @else
+                    <tr class="bg-light text-dark text-center">
+                      <td>{{ $i++ }}</td>
+                      <td>{{ $tgl }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                      <td>{{ $row->pengaduan->judul_laporan }}</td>
+                      <td>{{ $row->petugas->nama_petugas }}</td>
+                      <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->pengaduan->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('petugas/tanggapan/detail') }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
+                        <a href="{{ url('petugas/tanggapan/detail/'.$row->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Tanggapan">
                             <span class="fas fa-smile text-success"></span>
                         </a>
                         </td>
                         <td class="no-print">
-                        <a href="{{ url('petugas/tanggapan/edit') }}"  data-toggle="tooltip" data-placement="top" title="Edit Tanggapan">
+                        <a href="{{ url('petugas/tanggapan/edit/'.$row->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Edit Tanggapan">
                             <span class="fas fa-edit text-warning"></span>
                         </a>
                         </td>
                         <td>
-                        <a href="{{ url('petugas/tanggapan/hapus') }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a href="{{ url('petugas/tanggapan/hapus') }}" class="tombol_hapus_tanggapan" data-id-hapus-tanggapan="{{ $row->id_tanggapan }}"  data-toggle="modal" data-target="#HapusTanggapanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
                     </tr>
+                    @endif
+                    @endforeach
+                   
                   </tbody>
                 </table>
               </div>
@@ -105,7 +127,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-        <a href="{{ url('/masyarakat/tanggapan/hapus')}}" class="btn btn-danger">
+        <a id="id_hapus_tanggapan" href="{{ url('/petugas/tanggapan/hapus')}}" class="btn btn-danger">
         Ya
     </a>
       </div>

@@ -1,5 +1,5 @@
 
-@extends('layouts.main')
+@extends('layouts.petugas')
 @section('container')
 <div class="container-fluid" style="height:90%">
 
@@ -9,14 +9,21 @@
     </div>
 </div>
 
-  <form class="user" method="post" enctype="multipart/form-data" action="TulisPengaduan/tulis">
+  <form class="user" method="post" enctype="multipart/form-data" action="{{url('petugas/tanggapan/tulis')}}">
+    @csrf
+    <input type="hidden" name="id_pengaduan" value="{{ $pengaduan->id_pengaduan }}">
+    <input type="hidden" name="id_petugas" value="{{ $petugas->id_petugas }}">
+    <div class="form-group">
+      <label for="judul_laporan">Pengaduan dengan Judul </label>
+      <input type="text" class="form-control tgl_pengaduan" name="judul_laporan" disabled value="{{ $pengaduan->judul_laporan }}">
+    </div>
     <div class="form-group">
       <h5>Tanggapan</h5>
       <textarea class="form-control" name="tanggapan" id="" cols="30" rows="10"></textarea>
     </div>
     <div class="form-group">
-      <label for="tgl_pengaduan">Tanggal Pengaduan</label>
-      <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="<?= date('Y-m-d'); ?>">
+      <label for="tgl_pengaduan">Tanggal Tanggapan</label>
+      <input type="text" class="form-control tgl_pengaduan" name="tgl_tanggapan" id="tanggal" readonly value="{{ date('Y-m-d') }}">
     </div>
     <div class="form-group">
     </div>

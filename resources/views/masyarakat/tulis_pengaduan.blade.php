@@ -9,7 +9,8 @@
     </div>
 </div>
 
-  <form class="user" method="post" enctype="multipart/form-data" action="TulisPengaduan/tulis">
+  <form class="user" method="post" enctype="multipart/form-data" action="{{url('masyarakat/pengaduan/tulis')}}">
+    @csrf
   <div class="form-group">
       <h5>Judul Laporan</h5>
       <input class="form-control" type="text" name="judul_laporan" id="judul_laporan" required>
@@ -24,11 +25,13 @@
         <input class="form-control" type="text" name="alamat_pengaduan" id="alamat_pengaduan" required>
     </div>
     <div class="text-center">
-     <label for="img">Foto</label>
-    </div>
-    <div class="form-group text-center">
+      <label for="img">Foto</label>
+     </div>
+     
+     <div class="form-group text-center">
 
-      <img style="width:300px; height:300px;" src="img/default.jpeg" class="img-thumbnail rounded" alt="preview" id="target" name="img">
+      <input type="hidden" name="gambarLama">
+      <img style="width:300px; height:300px;" class="img-thumbnail rounded" alt="preview" id="target" name="img">
     </div>
     <div style="font-size:3rem;" class="text-center">
 
@@ -37,11 +40,11 @@
     <div class="form-group text-center">
 
 
-      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto" id="src">
+      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto" id="src" value="">
 
 
     </div>
-    <div class="form-group text-center">
+    <div class="form-group">
       <label for="tgl_pengaduan">Tanggal Pengaduan</label>
       <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="<?= date('Y-m-d'); ?>">
     </div>

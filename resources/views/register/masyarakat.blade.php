@@ -17,28 +17,90 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Silahkan masukan Data Diri Anda</h1>
               </div>
-              <form class="user" method="post" action="proses_register"><div class="form-group row">
+              
+              <form class="user" method="post" action="{{ url('masyarakat/proses_register')}}"><div class="form-group row">
+                @csrf
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" placeholder="Masukan Nama Lengkap Anda..." name="nama" required>
+                    <input type="text" class="form-control form-control-user" placeholder="Masukan Nama Lengkap Anda..." name="nama" value="{{ old('nama') }}">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" placeholder="Buat Password Anda..." name="password" required>
+                    <input type="password" class="form-control form-control-user" placeholder="Buat Password Anda..." name="password" value="">
+                  </div>
+                  @error('nama')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-1" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
+                  @error('password')
+                  <div class="col-sm-12">
+                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-n2" role="alert">
+                      <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control form-control-user" placeholder="Masukan Nik Anda..." name="nik"  value="{{ old('nik') }}">
+                </div>
+                @error('nik')
+                <div class="col-sm-12">
+                  <div class="alert alert-danger alert-dismissible fade show mt-2 mb-3" role="alert">
+                    <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
                 </div>
+                @enderror
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" placeholder="Masukan Nik Anda..." name="nik" required>
+                  <input type="text" class="form-control form-control-user" placeholder="Masukan Alamat Anda..." name="alamat" value="{{ old('alamat') }}">
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" placeholder="Masukan Alamat Anda..." name="alamat" required>
+                @error('alamat')
+                <div class="col-sm-12">
+                  <div class="alert alert-danger alert-dismissible fade show mt-2 mb-3" role="alert">
+                    <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                 </div>
+                @enderror
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukan Username Anda..." name="username" required>
+                    <input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukan Username Anda..." name="username"  value="{{ old('username') }}">
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Masukan Nomber HP Anda..." name="telp" required>
+                    <input type="number" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Masukan Nomber HP Anda..." name="telp"  value="{{ old('telp') }}">
                   </div>
                 </div>
+                @error('username')
+                <div class="col-sm-12">
+                  <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                    <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+                @enderror
+                @error('telp')
+                <div class="col-sm-12">
+                  <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                    <strong> {{ $message }}</strong> Masukan Data diri Anda dengan benar
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+                @enderror
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                  <i class="fas fa-sign-in-alt float-left"></i> Register
                 </button>
@@ -61,4 +123,5 @@
 </div>
 
 </div>
+@endsection
                 

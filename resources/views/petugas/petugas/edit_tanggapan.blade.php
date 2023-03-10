@@ -9,14 +9,18 @@
     </div>
 </div>
 
-  <form class="user" method="post" enctype="multipart/form-data" action="TulisPengaduan/tulis">
+  <form class="user" method="post" enctype="multipart/form-data" action="{{ url('petugas/tanggapan/edit') }}">
+    @csrf
+    <input type="hidden" name="id_tanggapan" value="{{ $tanggapan->id_tanggapan }}">
+    <input type="hidden" name="id_pengaduan" value="{{ $tanggapan->id_pengaduan }}">
+    <input type="hidden" name="id_petugas" value="{{ $tanggapan->id_petugas }}">
     <div class="form-group">
       <h5>Tanggapan</h5>
-      <textarea class="form-control" name="tanggapan" id="" cols="30" rows="10"></textarea>
+      <textarea class="form-control" name="tanggapan" id="" cols="30" rows="10"> {{ $tanggapan->tanggapan }} </textarea>
     </div>
     <div class="form-group">
-      <label for="tgl_pengaduan">Tanggal Pengaduan</label>
-      <input type="text" class="form-control tgl_pengaduan" name="tgl_pengaduan" id="tanggal" readonly value="<?= date('Y-m-d'); ?>">
+      <label for="tgl_pengaduan">Tanggal Tanggapan</label>
+      <input type="text" class="form-control" name="tgl_tanggapan" id="tanggal" readonly value="{{ substr($tanggapan->tgl_tanggapan, 0, 10); }}">
     </div>
     <div class="form-group">
     </div>
