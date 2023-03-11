@@ -173,6 +173,20 @@ class TanggapanController extends Controller
         //dd($pengaduan);
         return redirect(url('admin/tanggapan/kelola'));
     }
+    public function hapusBySuperAdmin($id)
+    {
+        //dd($id);
+        $tanggapan = Tanggapan::select()->where('id_tanggapan', $id)->get()->first();
+        //dd($pengaduan['foto']);
+        //dd(url('img/'.$pengaduan['foto']));
+
+            session()->flash('success', 'Tanggapan berhasil di Hapus');
+        Pengaduan::where('id_pengaduan', $tanggapan['id_pengaduan'])->update(["status" => "proses"]);
+        // $pengaduan = DB::table('pengaduan')->where('id_pengaduan', $id)->first();
+        Tanggapan::where('id_tanggapan', $id)->delete();
+        //dd($pengaduan);
+        return redirect(url('superAdmin/tanggapan/lihat'));
+    }
     public function edit($id)
     {
         

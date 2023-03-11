@@ -22,9 +22,9 @@
         </thead>
         <tbody>
           <tr>
-            <td> masyarakat </td>
-            <td> 20 Januari 2002 </td>
-            <td> proses </td>
+            <td> {{ $pengaduan->masyarakat->nama }} </td>
+            <td> {{ substr($pengaduan->tgl_pengaduan, 0 ,10) }} </td>
+            <td> {{ $pengaduan->status }} </td>
           </tr>
           <?php ?>
         </tbody>
@@ -37,7 +37,7 @@
         </thead>
         <tbody>
           <tr><td><p>
-            Lorem ipsum dolor, 
+            {{ $pengaduan->judul_laporan }}
           </p>
           </td></tr>
         </tbody>
@@ -50,7 +50,7 @@
         </thead>
         <tbody>
           <tr><td><p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptate iusto quaerat? Qui quae debitis nostrum dolorum ullam fugit odio soluta cum quasi, eius inventore impedit reiciendis ducimus consectetur ab velit dolor corporis nihil rem sed nulla autem est nisi! Dolores odit nihil deleniti temporibus sapiente autem error et voluptatum.
+            {{ $pengaduan->isi_laporan }}
           </p>
           </td></tr>
         </tbody>
@@ -63,7 +63,7 @@
         </thead>
         <tbody>
           <tr><td><p>
-           Cikarag
+           {{ $pengaduan->alamat_pengaduan }}
           </p>
           </td></tr>
         </tbody>
@@ -75,7 +75,7 @@
           <tr><th>Foto Laporan</th></tr>
         </thead>
         <tbody>
-          <tr><td><img style="width:500px;" src="img/" class="img-fluid rounded" alt="Foto Laporan">
+          <tr><td><img style="width:500px;" src="{{ url('img/pengaduan/nik='.$pengaduan->nik.'/'.$pengaduan->foto) }}" class="img-fluid rounded" alt="Foto Laporan">
           </td></tr>
         </tbody>
       </table>

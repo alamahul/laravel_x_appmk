@@ -5,8 +5,11 @@ use App\Http\Controllers\MasyarakatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\TanggapanController;
-use App\Models\Tanggapan;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +21,20 @@ use App\Models\Tanggapan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
+Route::get('/', [function () {
     return view('login/masyarakat', [
         "title" => "Login",
         "level" => "Masyarakat"
     ]);
-});
+}]);
 
 // Controller Masyarakat
 
-Route::get('/masyarakat', function () {
-    return view('masyarakat/home', [
-        "title" => "Home",
-        "level" => "Masyakarat"
-    ]);
-});
-Route::get('/masyarakat/home', function () {
-    return view('masyarakat/home', [
-        "title" => "Home",
-        "level" => "Masyakarat"
-    ]);
-});
-Route::get('/masyarakat/profile', function () {
-    return view('masyarakat/profile', [
-        "title" => "Profile",
-        "level" => "Masyakarat"
-    ]);
-});
+Route::get('/masyarakat', [HomeController::class, 'masyarakat']);
+Route::get('/masyarakat/home',[HomeController::class, 'masyarakat']);
+
+
+Route::get('/masyarakat/profile', [ProfileController::class, 'masyarakat']);
 
 
 Route::get('/masyarakat/pengaduan/tulis', [PengaduanController::class, 'tulis']);
@@ -55,6 +45,8 @@ Route::get('/masyarakat/pengaduan/hapus/{id}', [PengaduanController::class, 'del
 Route::post('/masyarakat/pengaduan/edit', [PengaduanController::class, 'proses_edit']);
 
 Route::get('/masyarakat/pengaduan/lihat', [PengaduanController::class, 'lihat']);
+Route::get('/masyarakat/pengaduan/lihat/verifikasi', [PengaduanController::class, 'lihatStatusVerifikasi']);
+Route::get('/masyarakat/pengaduan/lihat/selesai', [PengaduanController::class, 'lihatStatusSelesai']);
 
 Route::get('/masyarakat/pengaduan/detail/{id}', [PengaduanController::class, 'detail']);
 Route::get('/masyarakat/tanggapan/{id}', [TanggapanController::class, 'lihat_tanggapan']);
@@ -173,23 +165,22 @@ Route::get('/superAdmin/profile', function () {
     return view('petugas/superAdmin/profile');
 });
 Route::get('/superAdmin/tanggapan/lihat', [TanggapanController::class, 'lihat_tanggapanBySuperAdmin']);
-
+Route::get('/superAdmin/tanggapan/hapus/{id}', [TanggapanController::class, 'hapusBySuperAdmin']);
 Route::get('/superAdmin/tanggapan/detail/{id}', [TanggapanController::class, 'detailBySuperAdmin']);
-Route::get('/superAdmin/tanggapan/pengaduan', function () {
-    return view('petugas/superAdmin/pengaduan_tanggapan');
-});
-Route::get('/superAdmin/petugas/lihat', function () {
-    return view('petugas/superAdmin/lihat_petugas');
-});
-Route::get('/superAdmin/petugas/verifikasi', function () {
-    return view('petugas/superAdmin/verifikasi_petugas');
-});
-Route::get('/superAdmin/laporan/laporan_petugas', function () {
-    return view('petugas/superAdmin/laporan_petugas');
-});
-Route::get('/superAdmin/laporan/laporan_tanggapan', function () {
-    return view('petugas/superAdmin/laporan_tanggapan');
-});
+Route::get('/superAdmin/tanggapan/pengaduan/{id}', [PengaduanController::class, 'detailBySuperAdmin']);
+Route::get('/superAdmin/petugas/lihat', [PetugasController::class, 'lihat']);
+
+Route::get('/superAdmin/petugas/getData/{id}', [PetugasController::class, 'ambilDataPetugas']);
+
+Route::get('/superAdmin/petugas/hapus/{id}', [PetugasController::class, 'hapus']);
+Route::post('/superAdmin/petugas/tambah', [PetugasController::class, 'tambah']);
+
+Route::get('/superAdmin/petugas/verifikasi', [PetugasController::class, 'verifikasi']);
+Route::get('/superAdmin/petugas/verifikasi/{id}', [PetugasController::class, 'verifikasiPetugas']);
+
+
+Route::get('/superAdmin/laporan/laporan_petugas', [LaporanController::class, 'petugas']);
+Route::get('/superAdmin/laporan/laporan_tanggapan', [LaporanController::class, 'tanggapanBySuperAdmin']);
 
 Route::get('/superAdmin/logout', function () {
     
