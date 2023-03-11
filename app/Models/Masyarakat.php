@@ -23,6 +23,9 @@ class Masyarakat extends Model
 
     ];
 
-
+    public function pengadaun()
+    {
+        return $this->belongsToMany(Pengaduan::class, 'nik', 'nik');
+    }
     public $timestamps = false;
 }

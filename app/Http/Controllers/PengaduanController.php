@@ -26,6 +26,26 @@ class PengaduanController extends Controller
             "pengaduan" => $pengaduan
         ]);
     }
+    public function lihatStatusVerifikasi()
+    {
+        $pengaduan = Pengaduan::select()->where('nik', '123456')->where('status', 'proses')->get();
+        //dd($pengaduan);
+        return view('masyarakat/lihat_pengaduan', [
+            "title" => "Lihat Pengaduan",
+            "level" => "Masyakarat",
+            "pengaduan" => $pengaduan
+        ]);
+    }
+    public function lihatStatusSelesai()
+    {
+        $pengaduan = Pengaduan::select()->where('nik', '123456')->where('status', 'selesai')->get();
+        //dd($pengaduan);
+        return view('masyarakat/lihat_pengaduan', [
+            "title" => "Lihat Pengaduan",
+            "level" => "Masyakarat",
+            "pengaduan" => $pengaduan
+        ]);
+    }
     public function lihatByAdmin()
     {
         $pengaduan = Pengaduan::all();
@@ -114,7 +134,7 @@ class PengaduanController extends Controller
         $data['foto'] = $filename;
         $data['status'] = '0';
         //dd($data);
-
+         
         Pengaduan::create($data);
         $request->session()->flash('success', 'Pengaduan berhasil di Laporakan');
         return redirect(url('masyarakat/pengaduan/lihat'));
@@ -236,6 +256,22 @@ class PengaduanController extends Controller
             "title" => "Detail Pengaduan",
             "level" => "Admin",
             "bagian" => "kelola_pengaduan",
+            "pengaduan" => $pengaduan,
+            "masyarakat" => $masyarakat
+        ]);
+    }
+    public function detailbySuperAdmin($id)
+    {
+        
+        //$pengaduan = DB::table('pengaduan')->where('id_pengaduan', $id)->first();
+        $pengaduan = Pengaduan::select()->where('id_pengaduan', $id)->get()->first();
+        //dd($pengaduan->nik);
+        // $masyarakat = DB::table('masyarakat')->where('nik', $pengaduan->nik)->first();
+        $masyarakat = Masyarakat::select()->where('nik', $pengaduan->nik)->get()->first();
+        return view('petugas/superAdmin/pengaduan_tanggapan', [
+            "title" => "Detail Pengaduan",
+            "level" => "SupeAdmin",
+            "bagian" => "detail_pengaduan",
             "pengaduan" => $pengaduan,
             "masyarakat" => $masyarakat
         ]);

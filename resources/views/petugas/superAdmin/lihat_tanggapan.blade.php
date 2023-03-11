@@ -15,6 +15,16 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Tanggapan</h6>
             </div>
             <div class="card-body">
+              @if (session()->has('success'))
+              <div class="col-sm-12">
+                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -51,12 +61,12 @@
                         </a>
                       </td>
                         <td class="no-print">
-                        <a href="{{ url('superAdmin/tanggapan/pengaduan'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                        <a href="{{ url('superAdmin/tanggapan/pengaduan/'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
                             <span class="fas fa-eye text-success"></span>
                         </a>
                         </td>
                         <td>
-                        <a href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
+                        <a class="tombol_hapus_tanggapan" href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-hapus-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>
@@ -73,12 +83,12 @@
                       </a>
                     </td>
                       <td class="no-print">
-                      <a href="{{ url('superAdmin/tanggapan/pengaduan'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
+                      <a href="{{ url('superAdmin/tanggapan/pengaduan/'.$row->pengaduan->id_pengaduan ) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
                           <span class="fas fa-eye text-success"></span>
                       </a>
                       </td>
                       <td>
-                      <a href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
+                      <a class="tombol_hapus_tanggapan" href="{{ url('superAdmin/tanggapan/hapus') }}" data-id-hapus-tanggapan="{{ $row->id_tanggapan }}" data-toggle="modal" data-target="#HapusTanggapanModal">
                           <span class="fas fa-trash text-danger"></span>
                       </a>
                       </td>
