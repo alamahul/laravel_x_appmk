@@ -51,7 +51,7 @@
                       <td>{{ $row->alamat }}</td>
                       <td>{{ $row->username }}</td>
                       <td>{{ $row->telp }}</td>
-                      <td>{{ $row->foto_profile }}</td>
+                      <td><img src="{{ asset('img/foto_profile/nik='.$row->nik.'/'.$row->foto_profile) }}" alt="foto_profile" width="30px"></td>
                       <td>
                         <a href="{{ url('admin/masyarakat/hapus') }}" title="Hapus Masyarakat" class="tombol_hapus_masyarakat" data-id-hapus-masyarakat="{{ $row->nik }}" data-toggle="modal" data-target="#HapusMasyarakatModal">
                           <span class="fas fa-trash text-danger"></span>
@@ -66,7 +66,7 @@
                       <td>{{ $row->alamat }}</td>
                       <td>{{ $row->username }}</td>
                       <td>{{ $row->telp }}</td>
-                      <td>{{ $row->foto_profile }}</td>
+                      <td><img src="{{ asset('img/foto_profile/nik='.$row->nik.'/'.$row->foto_profile) }}" alt="foto_profile" width="30px"></td>
                       <td>
                       <a href="{{ url('admin/masyarakat/hapus') }}" title="Hapus Masyarakat" class="tombol_hapus_masyarakat" data-id-hapus-masyarakat="{{ $row->nik }}" data-toggle="modal" data-target="#HapusMasyarakatModal">
                         <span class="fas fa-trash text-danger"></span>

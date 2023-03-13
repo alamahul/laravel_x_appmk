@@ -18,6 +18,10 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.5/css/buttons.dataTables.min.css">
+
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
   <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
   <style>
@@ -144,7 +148,7 @@
   
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="{{ url('/logout') }}">
+    <a class="nav-link" href="{{ url('/petugas/logout') }}">
       <i class="fas fa-sign-out-alt"></i>
       <span>Logout</span></a>
   </li>
@@ -189,7 +193,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
-            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+            <img class="img-profile rounded-circle" src="{{ asset('img/app/admin.png') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -198,7 +202,7 @@
                 Profile
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{url('/admin/logout')}}" data-toggle="modal" data-target="#logoutModal">
+            <a class="dropdown-item" href="{{ url('/petugas/logout') }}" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
             </a>
@@ -210,6 +214,26 @@
     </nav>
     
 <div class="container-fluid">
+  @if (session()->has('success'))
+  <div class="col-sm-12">
+    <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+      {{ session('success') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  @endif
+  @if (session()->has('failed'))
+  <div class="col-sm-12">
+    <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+      {{ session('failed') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  @endif
     @yield('container')
 </div>
 
@@ -245,9 +269,40 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>
+  <script src=" https://cdn.datatables.net/buttons/2.3.5/js/buttons.print.min.js"></script>
+    
+  
+  
+  
+  
+ 
+ 
+ 
+
+
+
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
+  <script src="{{asset('js/tableHTMLExport.js')}}"></script>
+  <script src="{{asset('js/jquery.table2excel.js')}}"></script>
+  
+
+
+
+
+  
 </body>
 
 </html>

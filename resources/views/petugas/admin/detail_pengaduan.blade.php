@@ -8,39 +8,40 @@
                         $tgl = substr($tgl, 0, 10); 
 @endphp
     
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Detail Pengaduan</h1>
+      <div class="d-sm-flex align-items-center justify-content-between mb-4 no-print">
+        <h1 class="h3 mb-0 text-gray-800 no-print">Detail Pengaduan</h1>
       </div>
       @if($bagian != 'kelola_pengaduan')
       <div style="" class="card shadow">
 
-      <div class="card-header py-3">
+      <div class="card-header py-3 no-print">
         <h6 class="m-0 font-weight-bold text-primary">Detail Pengaduan</h6>
       </div>
       
       <div class="card-body">
+        <div class="no-print">
         @if ($pengaduan->status == 'proses')
 
-        <a href="{{ url('/admin/pengaduan/tanggapi')}}" class="btn btn-primary mb-3">
+        <a href="{{ url('/admin/pengaduan/tanggapi')}}" class="btn btn-primary mb-3 no-print">
           <i class="fas fa-arrow-left"></i> Kembali ke Tanggapi Pengaduan
         </a>
 
         @elseif ($pengaduan->status == 'selesai')
 
-        <a href="{{ url('/admin/tanggapan/kelola')}}" class="btn btn-primary mb-3">
+        <a href="{{ url('/admin/tanggapan/kelola')}}" class="btn btn-primary mb-3 no-print">
           <i class="fas fa-arrow-left"></i> Kembali ke Kelola Tanggapan
         </a>
 
         @else
 
-        <a href="{{ url('/admin/pengaduan/verifikasi')}}" class="btn btn-dark mb-3">
+        <a href="{{ url('/admin/pengaduan/verifikasi')}}" class="btn btn-dark mb-3 no-print">
           <i class="fas fa-angle-double-left"></i> Kembali ke Verifikasi Pengaduan
           </a>
 
         @endif
         
         @if ($pengaduan->status == 'selesai')
-        <a href="{{ url('/admin/tanggapan/detail/'.$pengaduan->tanggapan->id_tanggapan)}}" class="btn btn-success mb-3">
+        <a href="{{ url('/admin/tanggapan/detail/'.$pengaduan->tanggapan->id_tanggapan)}}" class="btn btn-success mb-3 no-print">
           <i class="fas fa-smile"></i> Lihat Tanggapan
         </a>
         @else
@@ -49,10 +50,10 @@
         </a> --}}
         @endif
         @if ($pengaduan->status == '0')
-        <a href="{{ url('admin/verifikasi_pengaduan') }}"    data-toggle="modal" data-id-verifikasi="{{ $pengaduan->id_pengaduan }}" data-target="#VerifikasiPengaduanModal" class="btn btn-success mb-3 tombolVerifikasi">
+        <a href="{{ url('admin/verifikasi_pengaduan') }}"    data-toggle="modal" data-id-verifikasi="{{ $pengaduan->id_pengaduan }}" data-target="#VerifikasiPengaduanModal" class="btn btn-success mb-3 tombolVerifikasi no-print">
           <i class="fas fa-check"></i> Verifikasi Pengaduan
         </a>
-        <a data-id-tolak="{{ $pengaduan->id_pengaduan }}" href="{{ url('admin/tolak_pengaduan') }}"  data-toggle="modal" data-target="#TolakPengaduanModal" class="btn btn-danger mb-3 tombolTolak">
+        <a data-id-tolak="{{ $pengaduan->id_pengaduan }}" href="{{ url('admin/tolak_pengaduan') }}"  data-toggle="modal" data-target="#TolakPengaduanModal" class="btn btn-danger mb-3 tombolTolak no-print">
           <i class="fas fa-times"></i> Tolak Pengaduan
         </a>
         @endif
@@ -62,17 +63,20 @@
         </a>
         @endif
     @else
-    <a href="{{ url('/admin/pengaduan/lihat')}}" class="btn btn-primary mb-3">
+    <a href="{{ url('/admin/pengaduan/lihat')}}" class="btn btn-primary mb-3 no-print">
       <i class="fas fa-arrow-left"></i> Kembali Ke Kelola Pengaduan
     </a>
     @if ($pengaduan->status == 'selesai')
-        <a href="{{ url('/admin/tanggapan/detail/'.$pengaduan->tanggapan->id_tanggapan)}}" class="btn btn-success mb-3">
+        <a href="{{ url('/admin/tanggapan/detail/'.$pengaduan->tanggapan->id_tanggapan)}}" class="btn btn-success mb-3 no-print">
           <i class="fas fa-smile"></i> Detail Tanggapan
         </a>
     @else
     @endif
     @endif
-    
+    <button class="btn btn-primary mb-3 no-print" onclick="return window.print()">
+      <i class="fas fa-print"></i> PRINT 
+    </button>
+  </div>
     <div class="table-responsive text-center">
       <table class="table table-bordered mt-0" id="dataTable" width="100%" cellspacing="0">
         <thead class="thead-light">

@@ -105,7 +105,7 @@
   
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="{{ url('/logout') }}">
+    <a class="nav-link" href="{{ url('/masyarakat/logout') }}">
       <i class="fas fa-sign-out-alt"></i>
       <span>Logout</span></a>
   </li>
@@ -150,7 +150,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
-            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+            <img class="img-profile rounded-circle" src="{{ asset('img/foto_profile/nik='.session()->all()['nik'].'/'.session()->all()['foto_profile']); }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -159,7 +159,7 @@
                 Profile
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{url('/masyarakat/logout')}}" data-toggle="modal" data-target="#logoutModal">
+            <a class="dropdown-item" href="{{url('/masyarakat/logout')}}">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
             </a>
@@ -171,6 +171,26 @@
     </nav>
     
 <div class="container-fluid">
+  @if (session()->has('success'))
+  <div class="col-sm-12">
+    <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
+      {{ session('success') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  @endif
+  @if (session()->has('failed'))
+  <div class="col-sm-12">
+    <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+      {{ session('failed') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  @endif
     @yield('container')
 </div>
 

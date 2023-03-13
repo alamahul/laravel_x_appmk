@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table id="laporan" class="table table-bordered display nowrap"  width="100%" cellspacing="0">
                   <thead>
                     <tr class="text-center bg-gradient-light text-dark">
                       <th>NO</th>
@@ -26,7 +26,7 @@
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
                       <th>Status</th>
-                      <th class="no-print" colspan="4">Aksi</th>
+                      <th class="no-print hidden" colspan="4">Aksi</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -38,7 +38,7 @@
                       <th>Alamat Pengaduan</th>
                       <th>Foto Pengaduan</th>
                       <th>Status</th>
-                      <th class="no-print" colspan="4">Aksi</th>
+                      <th class="no-print hidden" colspan="4">Aksi</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -52,7 +52,7 @@
                       <td>{{ $row->alamat_pengaduan }}</td>
                       <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
                       <td>{{ $row->status }}</td>
-                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                      <td class="no-print hidden"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
@@ -82,11 +82,11 @@
                       <td>{{ $row->alamat_pengaduan }}</td>
                       <td><img class="rounded mx-auto d-block" src="{{ asset('img/pengaduan/nik='.$row->nik.'/'.$row->foto)  }}" alt="foto_pengaduan" height="30px" width="30px"></td>
                       <td>{{ $row->status }}</td>
-                      <td class="no-print"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
+                      <td class="no-print hidden"><a href="{{ url('admin/pengaduan/detail/'.$row->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Detail Pengaduan">
                             <span class="fas fa-info text-info"></span>
                         </a>
                       </td>
-                        <td class="no-print">
+                        <td class="no-print hidden">
                           @if ($row->status == 'selesai')
                           <a href="{{ url('admin/tanggapan/detail/'.$row->tanggapan->id_tanggapan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Tanggapan">
                               <span class="fas fa-smile text-success"></span>
@@ -98,7 +98,7 @@
                           @endif
                         </td>
                         <td>
-                        <a class="tombolHapus" data-id-ubah="{{ $row->id_pengaduan }}" href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusPengaduanModal">
+                        <a class="tombolHapus hidden" data-id-ubah="{{ $row->id_pengaduan }}" href="{{ url('admin/pengaduan/hapus') }}"  data-toggle="modal" data-target="#HapusPengaduanModal">
                             <span class="fas fa-trash text-danger"></span>
                         </a>
                         </td>

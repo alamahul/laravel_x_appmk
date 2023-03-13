@@ -109,7 +109,8 @@ class PengaduanController extends Controller
     public function proses_tulis(Request $request)
     {
         //dd($request->file('foto')->getClientOriginalExtension());
-        //dd($data);
+       // dd(session()->all());
+        $nik = session()->all()['nik'];
         $data = $request->validate([
             'judul_laporan' => 'required|max:25',
             'isi_laporan' => 'required',
@@ -117,26 +118,26 @@ class PengaduanController extends Controller
             'tgl_pengaduan' => 'required',
         ]);
         $request->validate([
-            'foto' => 'required|image|file|max:1024'
+            'foto' => '|image|file|max:1024'
         ]);
         $fileFoto = $request->file('foto');
         $extensionFoto = $request->file('foto')->getClientOriginalExtension();
         //dd($extensionFoto);
         //date_default_timezone_set('Asia/Jakarta');
         //dd(date('s_i_H_d-m-Y'));
-        $filename = 'foto_dari_123456_'.md5($request->file('foto')->getClientOriginalName()).date('s_i_H_d-m-Y').'.'.$extensionFoto;
-        $location = 'img/pengaduan/nik=123456/';
+        $filename = 'foto_dari_'.$nik.'_'.md5($request->file('foto')->getClientOriginalName()).date('s_i_H_d-m-Y').'.'.$extensionFoto;
+        $location = "img/pengaduan/nik=$nik/";
         //dd($filename);
         $fileFoto->move($location,$filename);
         
         
-        $data['nik'] = '123456';
+        $data['nik'] = $nik;
         $data['foto'] = $filename;
         $data['status'] = '0';
         //dd($data);
          
         Pengaduan::create($data);
-        $request->session()->flash('success', 'Pengaduan berhasil di Laporakan');
+        $request->session()->flash('success', 'Pengaduan berhasil di Laporkan');
         return redirect(url('masyarakat/pengaduan/lihat'));
 
 

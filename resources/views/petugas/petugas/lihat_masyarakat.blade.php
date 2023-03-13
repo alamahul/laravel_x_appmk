@@ -46,7 +46,7 @@
                       <td>{{ $row->alamat }}</td>
                       <td>{{ $row->username }}</td>
                       <td>{{ $row->telp }}</td>
-                      <td>{{ $row->foto_profile }}</td>
+                      <td><img src="{{ asset('img/foto_profile/nik='.$row->nik.'/'.$row->foto_profile) }}" alt="foto_profile" width="30px" height="30px"></td>
                     </tr>
                     @else
                     <tr class="bg-light text-dark text-center">
@@ -55,7 +55,7 @@
                       <td>{{ $row->alamat }}</td>
                       <td>{{ $row->username }}</td>
                       <td>{{ $row->telp }}</td>
-                      <td>{{ $row->foto_profile }}</td>
+                      <td><img src="{{ asset('img/foto_profile/nik='.$row->nik.'/'.$row->foto_profile) }}" alt="foto_profile" width="30px" height="30px"></td>
                       </tr>
 
                     @endif

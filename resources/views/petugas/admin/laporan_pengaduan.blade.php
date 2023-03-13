@@ -12,6 +12,7 @@
         </button>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
+
             <div class="card-header py-3 text-center">
               <img class="mb-3" src="{{asset('img/app/logoGarut.png')}}" alt="">
               <h2 class="m-0 font-weight-bold text-dark">PEMERINTAH KABUPATEN GARUT</h2>
@@ -20,7 +21,9 @@
             <div class="card-body">
               <h3 class="mb-4 font-weight-bold text-dark text-center">Laporan Pengaduan</h3>
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <div class="no-print">  </div>
+                <table class="table table-bordered laporan no-print" width="100%" cellspacing="0">
+              
                   <thead>
                     <tr class="text-center bg-gradient-light text-dark">
                       <th>NO</th>
