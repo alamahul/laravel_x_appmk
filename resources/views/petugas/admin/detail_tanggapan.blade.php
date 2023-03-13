@@ -2,16 +2,16 @@
 @section('container')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Detail Tanggapan</h1>
+            <h1 class="h3 mb-0 text-gray-800 no-print">Detail Tanggapan</h1>
     </div>
 
 <div style="" class="card shadow">
-
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Data Tanggapan Pengaduan</h6>
   </div>
   
   <div class="card-body">
+    <div class="no-print">
   <a href="{{ url('/admin/tanggapan/kelola')}}" class="btn btn-primary mb-3">
       <i class="fas fa-arrow-left"></i> Kembali ke kelola Tanggapan
     </a>
@@ -27,7 +27,10 @@
       <i class="fas fa-edit mr-2"></i>Edit Tanggapan
    </a>
     @endif
-
+    <button class="btn btn-primary mb-3 no-print" onclick="return window.print()">
+      <i class="fas fa-print"></i> PRINT 
+    </button>
+  </div>
     <div class="table-responsive text-center">
       <table class="table table-bordered mt-0" id="dataTable" width="100%" cellspacing="0">
         <thead class="thead-light">
@@ -82,7 +85,7 @@
         </tbody>
       </table>
     </div>
-    </div>
+</div>
 </div>
 <div class="modal fade" id="HapusTanggapanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

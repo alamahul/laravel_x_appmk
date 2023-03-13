@@ -32,10 +32,9 @@
       <td>{{ $masyarakat->telp }}</td>
     </tr>
     <tr class="text-center bg-gradient-light text-dark text-weight-bold">
-        <td colspan="2"><a href="#" class="card-link">Ganti Data Profile</a></td>
+        <td colspan="2"><a href="{{ url('masyarakat/ganti_profile') }}" class="card-link">Ganti Data Profile</a></td>
     </tr>
   </tbody>
 </table>
-    
 </div>
 @endsection

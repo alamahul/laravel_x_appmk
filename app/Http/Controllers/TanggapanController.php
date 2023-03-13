@@ -31,7 +31,7 @@ class TanggapanController extends Controller
     }
     public function tulis_tanggapan($id)
     {
-        $petugas = Petugas::select()->where('id_petugas', '2')->get()->first();
+        $petugas = Petugas::select()->where('id_petugas', session()->all()['id_petugas'])->get()->first();
         $pengaduan = Pengaduan::select()->where('id_pengaduan', $id)->get()->first();
         return view('petugas/petugas/tulis_tanggapan', [
             "title" => "Tanggapi Pengaduan",
@@ -42,7 +42,7 @@ class TanggapanController extends Controller
     }
     public function tulis_tanggapanByAdmin($id)
     {
-        $petugas = Petugas::select()->where('id_petugas', '2')->get()->first();
+        $petugas = Petugas::select()->where('id_petugas', session()->all()['id_petugas'])->get()->first();
         $pengaduan = Pengaduan::select()->where('id_pengaduan', $id)->get()->first();
         return view('petugas/admin/tulis_tanggapan', [
             "title" => "Tanggapi Pengaduan",
@@ -84,7 +84,7 @@ class TanggapanController extends Controller
     }
     public function kelola_tanggapan()
     {
-        $tanggapan = Tanggapan::select()->where('id_petugas', '2')->get();
+        $tanggapan = Tanggapan::select()->where('id_petugas', session()->all()['id_petugas'])->get();
         return view('petugas/petugas/kelola_tanggapan', [
             "title" => "Kelola Tanggapan",
             "level" => "Petugas",
@@ -93,7 +93,7 @@ class TanggapanController extends Controller
     }
     public function kelola_tanggapanByAdmin()
     {
-        $tanggapan = Tanggapan::select()->where('id_petugas', '2')->get();
+        $tanggapan = Tanggapan::select()->where('id_petugas', session()->all()['id_petugas'])->get();
         return view('petugas/admin/kelola_tanggapan', [
             "title" => "Kelola Tanggapan",
             "level" => "Admin",

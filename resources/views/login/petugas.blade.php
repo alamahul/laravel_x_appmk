@@ -28,7 +28,18 @@
                 </div>
               </div>
               @endif
-              <form class="user" method="post" action="proses_login">
+              @if (session()->has('failed'))
+              <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('failed') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
+              <form class="user" method="post" action="{{ url('petugas/proses_login') }}">
+                @csrf
                 <div class="form-group">
                   <input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan Username Anda..." required>
                 </div>

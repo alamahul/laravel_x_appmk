@@ -25,9 +25,30 @@
                 </div>
               </div>
               @endif
+              @if (session()->has('failed'))
+              <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('failed') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
+              @if (session()->has('LoginError'))
+              <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                  {{ session('LoginError') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              </div>
+              @endif
               <form class="user" method="post" action="{{  url('/masyarakat/proses_login')}}">
+                @csrf
                 <div class="form-group">
-                  <input type="number" name="nik" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan NIK Anda..." required>
+                  <input type="number" name="nik" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan NIK Anda..." required value="{{ old('nik') }}">
                 </div>
                 <div class="form-group">
                   <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukan Password Anda" required>

@@ -164,3 +164,33 @@ $(function() {
         $('#id_verifikasi').attr('href', hrefVerifikasiLama);    
     })
 });
+
+
+// $(document).ready(function(){
+//     var tanggal = new Date()
+//     $('.export').click(function () {
+//         const typeData = $(this).data('type');
+//         alert(typeData);
+//        $('#laporan').tableHTMLExport({
+//         type: 'json',
+//         filename:'Laporan tanggal'+tanggal.getDate()+'.json',
+//        });
+//     });
+// });
+
+
+
+// $(document).ready(function() {
+//     $('#laporan').DataTable( {
+//         dom: 'Bfrtip',
+//         buttons: [
+//             {
+//                 extend: 'print',
+//                 exportOptions: {
+//                     stripHtml: false
+//                 }               
+//             }, 
+//             'csv', 'pdf', 'json', 'xlsx'        
+//          ]  
+//     } );
+// } );

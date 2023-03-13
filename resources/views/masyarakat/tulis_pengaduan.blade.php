@@ -1,9 +1,20 @@
 
 @extends('layouts.main')
 @section('container')
+@if($errors->any());
+<div class="col-sm-12">
+  <div class="alert alert-danger alert-dismissible fade show mt-2 mb-3" role="alert">
+    <strong></strong> Masukan Data Pengaduan Dengan Benar
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+@endif
 <div class="container-fluid" style="height:90%">
 
 <div class="row">
+  
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Tulis Pengaduan</h1>
     </div>
@@ -26,8 +37,9 @@
     </div>
     <div class="text-center">
       <label for="img">Foto</label>
+      <p>Gambar Tidak Boleh Lebih dari 1 MB</p>
      </div>
-     
+    
      <div class="form-group text-center">
 
       <input type="hidden" name="gambarLama">
