@@ -44,7 +44,7 @@
                     <tr class="bg-gradient-white text-dark text-center">
                       <td>{{ $i++ }}</td>
                       <td>{{ substr($row->tgl_tanggapan, 0, 10) }}</td>
-                      <td>{{ substr($row->tanggapan, 0, 10) }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
                       <td>{{ $row->pengaduan->judul_laporan }}</td>
                       <td>{{ $row->petugas->nama_petugas }}</td>
                     </tr>
@@ -52,7 +52,7 @@
                     <tr class="bg-light text-dark text-center">
                     <td>{{ $i++ }}</td>
                     <td>{{ substr($row->tgl_tanggapan, 0, 10) }}</td>
-                    <td>{{ substr($row->tanggapan, 0, 10) }}</td>
+                    <td>{{ substr($row->tanggapan, 0, 100) }}</td>
                     <td>{{ $row->pengaduan->judul_laporan }}</td>
                     <td>{{ $row->petugas->nama_petugas }}</td>
                     </tr>

@@ -30,6 +30,7 @@
     <div class="form-group">
     <h5>Username :</h5>
         <input class="form-control" type="text" name="username_petugas" value="{{ $petugas->username_petugas }}" id="username" required>
+        <input class="form-control" type="hidden" name="username_petugas_lama" value="{{ $petugas->username_petugas }}" id="username" required>
     </div>
     <div class="form-group">
       <h5>Password :</h5>

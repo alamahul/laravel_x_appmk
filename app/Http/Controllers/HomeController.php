@@ -12,9 +12,9 @@ class HomeController extends Controller
 {
     public function masyarakat()
     {
-        $jumlahPengaduan['semua'] = $this->ambilJumlahPengaduan('nik', session()->all()['nik']);
-        $jumlahPengaduan['proses'] = $this->ambilJumlahPengaduan('status', 'proses');
-        $jumlahPengaduan['selesai'] = $this->ambilJumlahPengaduan('status', 'selesai');
+        $jumlahPengaduan['semua'] = $this->ambilJumlahPengaduan('nik', session('nik'));
+        $jumlahPengaduan['proses'] = $this->ambilJumlahPengaduan('status', 'proses', 'nik', session('nik'));
+        $jumlahPengaduan['selesai'] = $this->ambilJumlahPengaduan('status', 'selesai', 'nik', session('nik'));
         //dd($jumlahPengaduan);
         return view('masyarakat/home', [
             "title" => "Home",
@@ -80,7 +80,7 @@ class HomeController extends Controller
             $pengaduan = Pengaduan::all();
             return count($pengaduan);
         }else{
-            $pengaduan = Pengaduan::select()->where($column1, $value1)->get();
+            $pengaduan = Pengaduan::select()->where($column1, $value1)->where($column2, $value2)->get();
             return count($pengaduan);
         }
     }

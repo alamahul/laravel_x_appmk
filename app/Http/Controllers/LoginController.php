@@ -35,6 +35,7 @@ class LoginController extends Controller
         if  (count($petugas) > 0){
             $request->session()->regenerate();
             session()->put('id_petugas', $petugas->first()->id_petugas);
+            session()->put('status', $petugas->first()->status);
             session()->put('level', $petugas->first()->level);
             session()->put('password', $petugas->first()->password);
             session()->put('username_petugas', $petugas->first()->username_petugas);
@@ -59,6 +60,7 @@ class LoginController extends Controller
         if  (count($masyarakat) > 0){
             $request->session()->regenerate();
             session()->put('nik', $masyarakat->first()->nik);
+            session()->put('nama', $masyarakat->first()->nama);
             session()->put('password', $masyarakat->first()->password);
             session()->put('username', $masyarakat->first()->username);
             session()->put('foto_profile', $masyarakat->first()->foto_profile);

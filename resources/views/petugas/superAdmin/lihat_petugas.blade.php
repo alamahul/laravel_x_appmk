@@ -16,26 +16,16 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Petugas</h6>
             </div>
             <div class="card-body">
-              @if (session()->has('success'))
+              @if ($errors->any())
               <div class="col-sm-12">
-                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
-                  {{ session('success') }}
+                <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
+                   Masukan Data Dengan Benar
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
               </div>
               @endif
-              @error( 'nama_petugas' || 'username_petugas' || 'telp' || 'level' )
-              <div class="col-sm-12">
-                <div class="alert alert-danger alert-dismissible fade show mt-1 mb-3" role="alert">
-                  {{ $message }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-              @enderror
                 <button class="btn btn-primary mb-3" id="modalTambahPetugas" data-toggle="modal" data-target="#PetugasModal">
                     <span class="fas fa-plus mr-2"></span>Tambah Petugas
                 </button>
@@ -166,6 +156,9 @@
           <div class="form-group">
             <label for="message-text" class="col-form-label">Username</label>
             <input type="text" class="form-control" name="username_petugas" id="username_ubah">
+          </div>
+          <div class="form-group">
+            <input type="hidden" class="form-control" name="username_petugas_lama" id="username_lama_ubah">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Telepon</label>

@@ -14,7 +14,8 @@
   
   <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="shortcut icon" href="/img/logoGarut.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/app/logoGarut.png') }}" type="image/x-icon">
+
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -34,10 +35,9 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-       
+       <div id="wrapper">
           <!-- Content Row -->
           
-          <div id="wrapper">
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion  no-print" id="accordionSidebar">
@@ -119,6 +119,8 @@
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 
+  
+
 </ul>
 <!-- End of Sidebar -->
 
@@ -137,7 +139,7 @@
         </button>
 
         <h1 class="judul">Aplikasi Pelaporan Pengaduan Masyarakat</h1>
-
+          
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
@@ -147,9 +149,10 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
+       
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('nama'); }}</span>
             <img class="img-profile rounded-circle" src="{{ asset('img/foto_profile/nik='.session()->all()['nik'].'/'.session()->all()['foto_profile']); }}">
             </a>
             <!-- Dropdown - User Information -->
@@ -194,12 +197,11 @@
     @yield('container')
 </div>
 
+  </div>
+
 
  <!-- End of Main Content -->
 
- </div>
-    </div>
-    </div>
       <!-- Footer -->
       <footer class="sticky-footer bg-white no-print">
         <div class="container my-auto">
@@ -228,7 +230,16 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+  {{-- <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+  
+  <!-- Page level custom scripts -->
+  <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
+
+  
+
   <script src="{{asset('js/script.js')}}"></script>
+  
 </body>
 
 </html>

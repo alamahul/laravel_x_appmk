@@ -18,7 +18,7 @@ class PengaduanController extends Controller
     }
     public function lihat()
     {
-        $pengaduan = Pengaduan::select()->where('nik', '123456')->get();
+        $pengaduan = Pengaduan::select()->where('nik', session('nik'))->get();
         //dd($pengaduan);
         return view('masyarakat/lihat_pengaduan', [
             "title" => "Lihat Pengaduan",
@@ -26,9 +26,10 @@ class PengaduanController extends Controller
             "pengaduan" => $pengaduan
         ]);
     }
+    
     public function lihatStatusVerifikasi()
     {
-        $pengaduan = Pengaduan::select()->where('nik', '123456')->where('status', 'proses')->get();
+        $pengaduan = Pengaduan::select()->where('nik', session('nik'))->where('status', 'proses')->get();
         //dd($pengaduan);
         return view('masyarakat/lihat_pengaduan', [
             "title" => "Lihat Pengaduan",
@@ -38,7 +39,7 @@ class PengaduanController extends Controller
     }
     public function lihatStatusSelesai()
     {
-        $pengaduan = Pengaduan::select()->where('nik', '123456')->where('status', 'selesai')->get();
+        $pengaduan = Pengaduan::select()->where('nik', session('nik'))->where('status', 'selesai')->get();
         //dd($pengaduan);
         return view('masyarakat/lihat_pengaduan', [
             "title" => "Lihat Pengaduan",
