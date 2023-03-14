@@ -68,4 +68,34 @@ class PetugasController extends Controller
     return redirect(url('superAdmin/petugas/lihat'));
 
    }
+   public function Ubah(Request $request)
+   {
+    
+    //dd($request['username_petugas']);
+    if ($request['username_petugas'] == $request['username_petugas_lama'])
+    $data = $request->validate([
+        'id_petugas' => 'required',
+        'nama_petugas' => 'required|min:3|max:25',
+        'username_petugas' => 'required|min:3|max:25|',
+        'telp' => 'required|numeric',
+        'status' => 'required',
+        'level' => 'required'
+    ]);
+    else{
+        $data = $request->validate([
+            'id_petugas' => 'required',
+            'nama_petugas' => 'required|min:3|max:25',
+            'username_petugas' => 'required|min:3|max:25|unique:petugas',
+            'telp' => 'required|numeric',
+            'status' => 'required',
+            'level' => 'required'
+        ]);
+    }
+    //dd($data);
+    Petugas::where('id_petugas', $data['id_petugas'])->update($data);
+    $request->session()->flash('success', 'Petugas berhasil di Diubah');
+    return redirect(url('superAdmin/petugas/lihat'));
+
+   }
+
 }

@@ -218,12 +218,10 @@
     @yield('container')
 </div>
 
+</div>
 
  <!-- End of Main Content -->
 
- </div>
-    </div>
-    </div>
       <!-- Footer -->
       <footer class="sticky-footer bg-white no-print">
         <div class="container my-auto">
@@ -253,6 +251,9 @@
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
+
+  <script src="{{ asset('js/jquery.filtertable.js') }}"></script>
+
 </body>
 
 </html>

@@ -21,7 +21,15 @@ class Admin
             return redirect(url('petugas/login'));
         }
         if (isset(session()->all()['username_petugas']) && isset(session()->all()['password'])) {
-            if (session()->all()['level'] == 'admin') { return $next($request); }
+            if (session()->all()['level'] == 'admin') { 
+               // dd(session()->All());
+                if (session()->all()['status'] != '0'){return $next($request); }     
+                else{
+                    session()->invalidate();
+                    session()->flash('failed', 'Akun Anda Belum Di Verifikasi');
+                    return redirect('petugas/login');
+                }
+            }
         }
         if(session()->all()['level'] == 'petugas'){
             session()->flash('failed', 'Anda Bukan sesi Admin');

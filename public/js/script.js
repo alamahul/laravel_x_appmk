@@ -97,8 +97,8 @@ $(function () {
 })
 
 $(function() {
+    const urlAction = $('#urlUbah').prop('action')
     $('.modalUbahData').on('click', function() {
-        const urlAction = $('#urlUbah').prop('action')
         $('#urlUbah').attr('action', urlAction + '/ubah');
         $('#modal_title').html('Ubah Petugas');
         $('#tomUbah').html('Ubah');
@@ -108,20 +108,22 @@ $(function() {
                  method: 'get',
                  dataType: 'json',
                 success: function  (data) {
-                    console.log(data);
+                    //console.log(data);
                      $('#id_petugas_ubah').val(data.id_petugas);
                      $('#name_ubah').val(data.nama_petugas);
                      $('#username_ubah').val(data.username_petugas);
+                     $('#username_lama_ubah').val(data.username_petugas);
                      $('#telp_ubah').val(data.telp);
                      $('#level_ubah').val(data.level);
                      
                  }
             });
     }) ;
+    $('#urlUbah').attr('action', urlAction);
 });
 $(function() {
+    const urlAction = $('#urlUbah').prop('action')
     $('#modalTambahPetugas').on('click', function() {
-                    const urlAction = $('#urlUbah').prop('action')
                     $('#urlUbah').attr('action', urlAction + '/tambah');
                      $('#tomUbah').html("Tambah");
                      $('#modal_title').html('Tambah Petugas');
@@ -133,6 +135,8 @@ $(function() {
                      
 
     }) ;
+    $('#urlUbah').attr('action', urlAction);
+
 });
 $(function () {
     const hrefHapusLama = $('#id_hapus_masyarakat').prop('href');
@@ -193,4 +197,24 @@ $(function() {
 //             'csv', 'pdf', 'json', 'xlsx'        
 //          ]  
 //     } );
-// } );
+// // } );
+// $(function () {
+    
+// $(document).ready(function(){
+    
+//     $('#pengaduan').filterTable();
+//     const filter = $('.filter-table input');
+//     filter.addClass('form-control');
+//     filter.attr('placeholder', 'Cari Data');
+//     $('.fill-filter').on('click', function(ev) {
+//         ev.preventDefault();
+//         $('.filter-table input').val($(this).text()).focus().trigger('click');
+//       });   
+// });  
+
+// }) ; 
+
+$(function () {
+    
+})
+

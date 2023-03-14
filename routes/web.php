@@ -151,6 +151,7 @@ Route::get('/superAdmin/petugas/getData/{id}', [PetugasController::class, 'ambil
 
 Route::get('/superAdmin/petugas/hapus/{id}', [PetugasController::class, 'hapus'])->middleware('super_admin');
 Route::post('/superAdmin/petugas/tambah', [PetugasController::class, 'tambah'])->middleware('super_admin');
+Route::post('/superAdmin/petugas/ubah', [PetugasController::class, 'ubah'])->middleware('super_admin');
 
 Route::get('/superAdmin/petugas/verifikasi', [PetugasController::class, 'verifikasi'])->middleware('super_admin');
 Route::get('/superAdmin/petugas/verifikasi/{id}', [PetugasController::class, 'verifikasiPetugas'])->middleware('super_admin');

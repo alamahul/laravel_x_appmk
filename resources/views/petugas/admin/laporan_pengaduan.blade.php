@@ -21,8 +21,8 @@
             <div class="card-body">
               <h3 class="mb-4 font-weight-bold text-dark text-center">Laporan Pengaduan</h3>
               <div class="table-responsive">
-                <div class="no-print">  </div>
-                <table class="table table-bordered laporan no-print" width="100%" cellspacing="0">
+               
+                <table class="table table-bordered laporan " width="100%" cellspacing="0">
               
                   <thead>
                     <tr class="text-center bg-gradient-light text-dark">

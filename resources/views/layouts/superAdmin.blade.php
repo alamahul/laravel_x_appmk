@@ -10,11 +10,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>APPMK | </title>
+  <title>APPMK | {{ $title }} </title>
   
   <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="shortcut icon" href="/img/logoGarut.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('img/app/logoGarut.png')}}" type="image/x-icon">
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -220,6 +220,7 @@
     @yield('container')
 </div>
 
+  </div>
 
  <!-- End of Main Content -->
 
@@ -255,6 +256,8 @@
   <!-- Custom scripts for all pages-->
   <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
+  
+  <script src="{{ asset('js/jquery.filtertable.js') }}"></script>
 </body>
 
 </html>

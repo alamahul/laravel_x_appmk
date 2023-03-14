@@ -97,15 +97,26 @@ class ProfileController extends Controller
         //dd($request);
         //dd($request['id_pengaduan']);
         //dd('img/pengaduan/nik='.$request['nik']);
-        $data = $request->validate([
-            'nik' => 'required',
-            'nama' => 'required|max:25',
-            'alamat' => ['required'],
-            'username' => 'required',
-            'password' => 'required|max:8|min:8',
-            'telp' => 'required|numeric',
-        ]);
-        //dd($data);
+        if ($request['username'] == $request['username_lama']){
+            $data = $request->validate([
+                'nik' => 'required',
+                'nama' => 'required|max:25',
+                'alamat' => ['required'],
+                'username' => 'required',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+            //dd($data);
+        }else{
+            $data = $request->validate([
+                'nik' => 'required',
+                'nama' => 'required|max:25',
+                'alamat' => ['required'],
+                'username' => 'required|unique:masyarakat',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+        }
 
         if ($request->file('foto_profile') != null ){
         $request->validate([
@@ -142,13 +153,25 @@ class ProfileController extends Controller
         //dd($request);
         //dd($request['id_pengaduan']);
         //dd('img/pengaduan/nik='.$request['nik']);
-        $data = $request->validate([
-            'id_petugas' => 'required',
-            'nama_petugas' => 'required|max:25',
-            'username_petugas' => 'required',
-            'password' => 'required|max:8|min:8',
-            'telp' => 'required|numeric',
-        ]);
+        if($request['username_petugas'] == $request['username_petugas_lama']){
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+            //dd($data);
+        }else{
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required|unique:Petugas',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+           
+        }
         //dd($data);
 
 
@@ -163,13 +186,25 @@ class ProfileController extends Controller
         //dd($request);
         //dd($request['id_pengaduan']);
         //dd('img/pengaduan/nik='.$request['nik']);
-        $data = $request->validate([
-            'id_petugas' => 'required',
-            'nama_petugas' => 'required|max:25',
-            'username_petugas' => 'required',
-            'password' => 'required|max:8|min:8',
-            'telp' => 'required|numeric',
-        ]);
+        if($request['username_petugas'] == $request['username_petugas_lama']){
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+            //dd($data);
+        }else{
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required|unique:Petugas',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+           
+        }
         //dd($data);
 
 
@@ -184,14 +219,25 @@ class ProfileController extends Controller
         //dd($request);
         //dd($request['id_pengaduan']);
         //dd('img/pengaduan/nik='.$request['nik']);
-        $data = $request->validate([
-            'id_petugas' => 'required',
-            'nama_petugas' => 'required|max:25',
-            'username_petugas' => 'required',
-            'password' => 'required|max:8|min:8',
-            'telp' => 'required|numeric',
-        ]);
-        //dd($data);
+        if($request['username_petugas'] == $request['username_petugas_lama']){
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+            //dd($data);
+        }else{
+            $data = $request->validate([
+                'id_petugas' => 'required',
+                'nama_petugas' => 'required|max:25',
+                'username_petugas' => 'required|unique:Petugas',
+                'password' => 'required|max:8|min:8',
+                'telp' => 'required|numeric',
+            ]);
+           
+        }
 
 
         Petugas::where('id_petugas', $data['id_petugas'])->update($data);
