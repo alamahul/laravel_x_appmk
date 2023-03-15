@@ -16,16 +16,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Data Pengaduan</h6>
             </div>
             <div class="card-body">
-              @if (session()->has('success'))
-              <div class="col-sm-12">
-                <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
-                  {{ session('success') }}
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-              </div>
-              @endif
+
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>

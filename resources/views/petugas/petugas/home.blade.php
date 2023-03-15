@@ -52,7 +52,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-lg-4 col-md-12 mb-4">
-                <a class="nav-link" href="/lihatPengaduan/selesai">
+                <a class="nav-link" href="{{ url('petugas/pengaduan/tanggapi') }}">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
