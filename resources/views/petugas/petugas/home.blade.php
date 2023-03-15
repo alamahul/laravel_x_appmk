@@ -23,7 +23,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahPengaduan['semua'] }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                      <i class="far fa-clone fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahPengaduan['0'] }}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-file-export fa-2x text-gray-300"></i>
+                      <i class="fas fa-exclamation fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-file-signature fa-2x text-gray-300"></i>
+                      <i class="fas fa-file-medical fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -78,6 +78,6 @@
     </div>
 
           
-</main>
+</main> 
 
 @endsection

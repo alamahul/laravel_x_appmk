@@ -40,12 +40,11 @@
           
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion  no-print" id="accordionSidebar">
-
+<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion  no-print" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/masyarakat/home')}}">
     <div class="sidebar-brand-icon">
-      <i class="fas fa-archive"></i>
+      <img src="{{ asset('img/app/logoGarut.png') }}" class="img-fluid rounded float-left" alt="Logo Garut" width="50">
     </div>
     <div class="sidebar-brand-text mx-3">APPMK <sup>Garut</sup></div>
   </a>
@@ -174,6 +173,7 @@
     </nav>
     
 <div class="container-fluid">
+  <img src="{{ url('img/app/LogoApp.jpg') }}" class="img-fluid" alt="">
   @if (session()->has('success'))
   <div class="col-sm-12">
     <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
@@ -203,7 +203,7 @@
  <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white no-print">
+      <footer class="sticky-footer bg-white mt-5 no-print">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>DIBUAT OLEH <i class="fas fa-heart"></i> Alamahul Bayan &copy; 2023 </span>

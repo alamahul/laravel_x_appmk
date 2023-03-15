@@ -5,7 +5,7 @@
 <!-- Outer Row -->
 <div class="row justify-content-center">
 
-  <div class="col-xl-8 col-lg-11 col-md-11">
+  <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
@@ -15,7 +15,8 @@
           <div class="col-lg-12">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Silahkan masukan Data Diri Anda</h1>
+                <img src="{{ asset('img/app/logoApp.jpg') }}" class="img-fluid mb-3" >
+                <h1 class="h4 text-gray-900 mb-4 sambutan-login">Silahkan masukan Data Diri Anda</h1>
               </div>
               
               <form class="user" method="post" action="{{ url('masyarakat/proses_register')}}"><div class="form-group row">

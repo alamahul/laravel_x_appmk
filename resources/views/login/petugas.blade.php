@@ -6,7 +6,7 @@
 <!-- Outer Row -->
 <div class="row justify-content-center">
 
-  <div class="col-xl-6 col-lg-8 col-md-9">
+  <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
@@ -16,7 +16,8 @@
           <div class="col-lg-12">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Silahkan Login untuk Mengakses Aplikasi</h1>
+                <img src="{{ asset('img/app/logoApp.jpg') }}" class="img-fluid mb-3" >
+                <h1 class="h4 text-gray-900 mb-4 sambutan-login">Silahkan Login untuk Mengakses Aplikasi</h1>
               </div>
               @if (session()->has('success'))
               <div class="col-sm-12">

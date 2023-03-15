@@ -5,7 +5,7 @@
 
 <div class="row">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Edit Pengaduan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Tanggapan</h1>
     </div>
 </div>
 
@@ -32,7 +32,7 @@
     <a href="{{url('petugas/tanggapan/kelola')}}" class="btn btn-secondary">
       <i class="fas fa-chevron-circle-left"></i> Kembali ke Kelola Tanggapan
     </a>
-    <a href="{{url('petugas/tanggapan/detail')}}" class="btn btn-dark">
+    <a href="{{url('petugas/tanggapan/detail/'.$tanggapan->id_tanggapan)}}" class="btn btn-dark">
       <i class="fas fa-angle-double-left"></i> Kembali ke Detail Tanggapan
     </a>
     <?php // var_dump($_POST); var_dump($_FILES); ?>

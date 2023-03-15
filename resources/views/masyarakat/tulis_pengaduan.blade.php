@@ -52,7 +52,7 @@
     <div class="form-group text-center">
 
 
-      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto" id="src" value="">
+      <input style="" type="file" class="form-control" name="foto" id="src" value="">
 
 
     </div>
@@ -62,12 +62,12 @@
     </div>
     <div class="form-group">
     </div>
-    <button class="btn btn-success" type="submit">
+    <button class="btn btn-success mb-5" type="submit">
       <i class="fas fa-upload"></i>
       Kirim Pengaduan
     </button>
 
-    <a href="{{url('masyarakat/home')}}" class="btn btn-secondary">
+    <a href="{{url('masyarakat/home')}}" class="btn btn-secondary mb-5">
       <i class="fas fa-chevron-circle-left"></i> Kembali ke Home
     </a>
     <?php // var_dump($_POST); var_dump($_FILES); ?>

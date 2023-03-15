@@ -39,7 +39,7 @@
     </a>
     @endif
 
-    <a  @if($pengaduan->status == 'selesai') href="{{ url('/masyarakat/tanggapan')}}" class="btn btn-success mb-3" @else class="btn btn-dark mb-3" title="Pengaduan Belum DiTanggapi"  @endif>
+    <a  @if($pengaduan->status == 'selesai') href="{{ url('/masyarakat/tanggapan/'. $pengaduan->tanggapan->id_tanggapan)}}" class="btn btn-success mb-3" @else class="btn btn-dark mb-3" title="Pengaduan Belum DiTanggapi"  @endif>
       <i class="fas fa-smile"></i> Lihat Tanggapan
     </a>
     <div class="table-responsive text-center">

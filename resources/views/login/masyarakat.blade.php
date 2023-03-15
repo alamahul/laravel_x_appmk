@@ -3,17 +3,19 @@
 <!-- Outer Row -->
 <div class="row justify-content-center">
 
-  <div class="col-xl-6 col-lg-8 col-md-9">
+  <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
         
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-12">
+          
+           
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Silahkan Login untuk Mengakses Aplikasi</h1>
+                <img src="{{ asset('img/app/logoApp.jpg') }}" class="img-fluid mb-3" >
+                <h1 class="h4 text-gray-900 mb-4 sambutan-login">Silahkan Login untuk Mengakses Aplikasi</h1>
               </div>
               @if (session()->has('success'))
               <div class="col-sm-12">
@@ -45,13 +47,16 @@
                 </div>
               </div>
               @endif
+
+          
+            
               <form class="user" method="post" action="{{  url('/masyarakat/proses_login')}}">
                 @csrf
                 <div class="form-group">
-                  <input type="number" name="nik" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan NIK Anda..." required value="{{ old('nik') }}">
+                  <input type="number" name="nik" class="form-control form-control-user inputData" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Masukan NIK Anda..." required value="{{ old('nik') }}">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Masukan Password Anda" required>
+                  <input type="password" name="password" class="form-control form-control-user inputData" id="exampleInputPassword" placeholder="Masukan Password Anda" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                  <i class="fas fa-sign-in-alt float-left"></i> Login
@@ -65,6 +70,12 @@
                 </a>
               </form>
               <hr>
+              <a class="nav-link text-center" target="_blank" href="docs/Manual_Book_APPMK.pdf">
+                Download Dokumentasi User Manual
+              </a>
+              <a class="nav-link text-center" href="#">
+                Download Dokumentasi Pengembangan Aplikasi
+              </a>
             </div>
           </div>
           
