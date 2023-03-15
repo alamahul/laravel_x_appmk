@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('container')
 @php
+  //echo($pengaduan->isi_laporan);die;
   $tgl = $pengaduan->tgl_pengaduan;
   $tgl = substr($tgl, 0, 10);
   //dd($masyarakat);
@@ -69,9 +70,9 @@
           <tr><th>Judul Laporan</th></tr>
         </thead>
         <tbody>
-          <tr><td><p>
+          <tr><td>
             {{ $pengaduan->judul_laporan }}
-          </p>
+          
           </td></tr>
         </tbody>
       </table>
@@ -82,9 +83,10 @@
           <tr><th>Isi Laporan</th></tr>
         </thead>
         <tbody>
-          <tr><td>
-            {{ $pengaduan->isi_laporan }}
-         
+          <tr><td class="text-left">
+            @php
+                echo $pengaduan->isi_laporan; 
+            @endphp
           </td></tr>
         </tbody>
       </table>
