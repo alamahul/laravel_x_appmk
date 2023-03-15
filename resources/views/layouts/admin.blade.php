@@ -14,7 +14,7 @@
   
   <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="shortcut icon" href="/img/logoGarut.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/app/logoGarut.png') }}" type="image/x-icon">
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -49,7 +49,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/admin/home')}}">
     <div class="sidebar-brand-icon">
-      <i class="fas fa-archive"></i>
+      <img src="{{ asset('img/app/logoGarut.png') }}" class="img-fluid rounded float-left" alt="Logo Garut" width="50">
     </div>
     <div class="sidebar-brand-text mx-3">APPMK <sup>Garut</sup></div>
   </a>
@@ -214,6 +214,7 @@
     </nav>
     
 <div class="container-fluid">
+  <img src="{{ url('img/app/LogoApp.jpg') }}" class="img-fluid no-print" alt="">
   @if (session()->has('success'))
   <div class="col-sm-12">
     <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
@@ -242,11 +243,8 @@
 
  <!-- End of Main Content -->
 
- </div>
-    </div>
-    </div>
       <!-- Footer -->
-      <footer class="sticky-footer bg-white no-print">
+      <footer class="sticky-footer bg-white no-print mt-5">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>DIBUAT OLEH <i class="fas fa-heart"></i> Alamahul Bayan &copy; 2023 </span>

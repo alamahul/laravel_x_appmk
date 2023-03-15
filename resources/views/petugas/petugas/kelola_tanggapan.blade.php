@@ -46,7 +46,7 @@ $i = 1;
                     <tr class="bg-gradient-white text-dark text-center">
                       <td>{{ $i++ }}</td>
                       <td>{{ $tgl }}</td>
-                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 50) }}</td>
                       <td>{{ $row->pengaduan->judul_laporan }}</td>
                       <td>{{ $row->petugas->nama_petugas }}</td>
                       <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->pengaduan->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">
@@ -73,7 +73,7 @@ $i = 1;
                     <tr class="bg-light text-dark text-center">
                       <td>{{ $i++ }}</td>
                       <td>{{ $tgl }}</td>
-                      <td>{{ substr($row->tanggapan, 0, 100) }}</td>
+                      <td>{{ substr($row->tanggapan, 0, 50) }}</td>
                       <td>{{ $row->pengaduan->judul_laporan }}</td>
                       <td>{{ $row->petugas->nama_petugas }}</td>
                       <td class="no-print"><a href="{{ url('petugas/pengaduan/detail/'.$row->pengaduan->id_pengaduan) }}"  data-toggle="tooltip" data-placement="top" title="Lihat Pengaduan">

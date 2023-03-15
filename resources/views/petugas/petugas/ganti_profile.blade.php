@@ -1,5 +1,5 @@
 
-@extends('layouts.admin')
+@extends('layouts.petugas')
 @section('container')
 @if($errors->any());
 <div class="col-sm-12">

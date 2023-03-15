@@ -45,7 +45,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/admin/home')}}">
     <div class="sidebar-brand-icon">
-      <i class="fas fa-archive"></i>
+      <img src="{{ asset('img/app/logoGarut.png') }}" class="img-fluid rounded float-left" alt="Logo Garut" width="50">
     </div>
     <div class="sidebar-brand-text mx-3">APPMK <sup>Garut</sup></div>
   </a>
@@ -175,7 +175,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ session('username_petugas') }}</span>
             <img class="img-profile rounded-circle" src="{{ asset('img/app/super-admin.png') }}">
             </a>
             <!-- Dropdown - User Information -->
@@ -197,6 +197,7 @@
     </nav>
     
 <div class="container-fluid">
+  <img src="{{ url('img/app/LogoApp.jpg') }}" class="img-fluid no-print" alt="">
   @if (session()->has('success'))
   <div class="col-sm-12">
     <div class="alert alert-success alert-dismissible fade show mt-1 mb-3" role="alert">
@@ -228,7 +229,7 @@
     </div>
     </div>
       <!-- Footer -->
-      <footer class="sticky-footer bg-white no-print">
+      <footer class="sticky-footer bg-white no-print mt-6">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>DIBUAT OLEH <i class="fas fa-heart"></i> Alamahul Bayan &copy; 2023 </span>

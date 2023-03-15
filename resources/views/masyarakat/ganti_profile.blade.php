@@ -11,7 +11,7 @@
   </div>
 </div>
 @endif
-<div class="container-fluid" style="height:90%">
+<div class="container-fluid">
 
 <div class="row">
   
@@ -58,7 +58,7 @@
     <div class="form-group text-center">
 
         <input type="hidden" name="gambarLama" value="{{ $masyarakat->foto_profile }}">
-      <input style="" type="file" class="fas fa-file-upload form-control btn btn-info" name="foto_profile" id="src" value="">
+      <input type="file" class="form-control" name="foto_profile" id="src" value="">
 
 
     </div>
@@ -72,12 +72,12 @@
       </div>
     <div class="form-group">
     </div>
-    <button class="btn btn-success" type="submit">
+    <button class="btn btn-success mb-5" type="submit">
       <i class="fas fa-upload"></i>
      Ganti
     </button>
 
-    <a href="{{url('masyarakat/profile')}}" class="btn btn-secondary">
+    <a href="{{url('masyarakat/profile')}}" class="btn btn-secondary mb-5">
       <i class="fas fa-chevron-circle-left"></i> Kembali ke Profile
     </a>
     <?php // var_dump($_POST); var_dump($_FILES); ?>

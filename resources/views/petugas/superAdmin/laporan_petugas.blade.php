@@ -7,7 +7,7 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800 mb-3 no-print">Laporan Petugas</h1>
           <button class="btn btn-primary mb-2 no-print" onclick="return window.print()">
-            <span class="fas fa-print text-white"></span> Generate Laporan
+            <span class="fas fa-print text-white"></span> PRINT
         </button>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
