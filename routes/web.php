@@ -181,7 +181,7 @@ Route::get('/petugas/logout', [LogoutController::class, 'petugas']);
 // Petugas
 
 Route::post('/petugas/proses_login', [LoginController::class, 'proses_login_petugas'])->middleware('guestApp');
-
+ 
 Route::get('/petugas/register', [RegisterController::class, 'petugas'])->middleware('guestApp');
 
 Route::post('/petugas/proses_register', [RegisterController::class, 'register_petugas'])->middleware('guestApp');

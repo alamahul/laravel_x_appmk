@@ -70,17 +70,16 @@
                 </a>
               </form>
               <hr>
-              <a class="nav-link text-center" target="_blank" href="docs/Manual_Book_APPMK.pdf">
+              <a class="nav-link text-center" target="_blank" href="{{ url('docs/Manual_Book_APPMK.pdf') }}">
                 Download Dokumentasi User Manual
               </a>
-              <a class="nav-link text-center" href="#">
-                Download Dokumentasi Pengembangan Aplikasi
+              <a class="nav-link text-center" target="_blank" href="https://github.com/alamahul/laravel_x_appmk">
+                Lihat Dokumentasi Pengembangan Aplikasi
               </a>
             </div>
           </div>
           
         </div>
-        
       </div>
     </div>
 

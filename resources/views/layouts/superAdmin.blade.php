@@ -218,16 +218,11 @@
     </div>
   </div>
   @endif
-    @yield('container')
-</div>
-
-  </div>
+   
 
  <!-- End of Main Content -->
 
- </div>
-    </div>
-    </div>
+
       <!-- Footer -->
       <footer class="sticky-footer bg-white no-print mt-6">
         <div class="container my-auto">
@@ -255,7 +250,10 @@
   <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+  <script src @yield('container')
+</div>
+
+  </div>="{{asset('js/sb-admin-2.min.js')}}"></script>
   <script src="{{asset('js/script.js')}}"></script>
   
   <script src="{{ asset('js/jquery.filtertable.js') }}"></script>

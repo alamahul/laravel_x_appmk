@@ -29,8 +29,11 @@ class LoginController extends Controller
             "username" => "required|",
             "password" => "required|"
         ]);
+
+        
         $username = $data['username'];
         $password = $data['password'];
+        //dd($data['username']);
         $petugas = Petugas::select()->where('username_petugas',$username)->where('password',$password)->get();
         if  (count($petugas) > 0){
             $request->session()->regenerate();
@@ -44,8 +47,11 @@ class LoginController extends Controller
             if(session()->all()['level'] == 'admin' ){ return redirect(url('/admin/home')); }
             if(session()->all()['level'] == 'super_admin' ){ return redirect(url('/superAdmin/home')); }
            
-        } 
-    }
+        }else{
+            session()->flash('failed', 'Login Gagal');
+            return redirect(url('/petugas/login'));
+        }
+    } 
     public function proses_login_masyarakat(Request $request)   
     {
         //dd($request);
